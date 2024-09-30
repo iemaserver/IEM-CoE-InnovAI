@@ -1,82 +1,92 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #e1a8a8; /* Dark background */
-  }
-  
-  .navbar {
-    background-color: #333;
-    padding: 10px;
-    position: relative;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e1a8a8; /* Dark background */
+}
+
+.navbar {
+  background-color: #333333;
+  padding: 10px;
+  position: relative;
+}
+
+/* (Visible only on mobile) */
+.menu-toggle {
+  color: rgb(193, 97, 97);
+  font-size: 30px;
+  cursor: pointer;
+  padding: 5px;
+  display: block; 
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+  transition: height 0.5s ease, opacity 0.5s ease;
+}
+
+.menu li {
+  padding: 15px;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.menu.show {
+  height: 220px; 
+  opacity: 1;
+}
+
+.menu.show li {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Delay the appearance of each menu item */
+.menu.show li:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.menu.show li:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.menu.show li:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.menu.show li:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+/* For Desktop (min-width: 768px) */
+@media (min-width: 768px) {
   .menu-toggle {
-    color: rgb(193, 97, 97);
-    font-size: 30px;
-    cursor: pointer;
-    padding: 5px;
-    width: 21px;
-    
+    display: none; /* Hide the hamburger menu on desktop */
   }
-  
+
   .menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    height: 0;
-    opacity: 0;
-    transition: height 0.5s ease, opacity 0.5s ease;
+    display: flex; /* Show the menu as a flexbox */
+    height: auto;
+    opacity: 1;
+    flex-direction: row; /* Make menu items appear in a row */
   }
-  
+
   .menu li {
-    padding: 15px;
-    transform: translateY(-20px);
-    opacity: 0;
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: none;
+    opacity: 1;
+    padding: 0 20px; /* Add space between menu items */
   }
-  
+
   .menu li a {
-    color: white;
-    text-decoration: none;
     font-size: 18px;
   }
-  
-  .menu.show {
-    height: 220px; /* Adjust based on your menu height */
-    opacity: 1;
-  }
-  
-  .menu.show li {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  
-  /* Delay the appearance of each menu item */
-  .menu.show li:nth-child(1) {
-    transition-delay: 0.1s;
-  }
-  .menu.show li:nth-child(2) {
-    transition-delay: 0.2s;
-  }
-  .menu.show li:nth-child(3) {
-    transition-delay: 0.3s;
-  }
-  .menu.show li:nth-child(4) {
-    transition-delay: 0.4s;
-  }
-  
-  @media (min-width: 768px) {
-    .menu {
-      height: auto;
-      opacity: 1;
-      display: flex;
-    }
-  
-    .menu li {
-      transform: none;
-      opacity: 1;
-    }
-  }
-  
+}

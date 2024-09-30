@@ -1,48 +1,79 @@
-/* Footer.css */
 .footer {
-  background-color: #333;
+  background: linear-gradient(135deg, #333, #555); /* Gradient for a modern look */
   color: white;
-  padding: 20px ;
-}
-.container1 {
-  display: flex;
-  justify-content: flex-start; /* Aligns the content to the left */
-  align-items: center; /* Centers vertically (if needed) */
+  padding: 40px 20px; /* Add more padding for better spacing */
+  text-align: center;
 }
 
+.container1 {
+  display: flex;
+  justify-content: space-between; /* Space out items */
+  align-items: center;
+  flex-wrap: wrap; /* Ensure it wraps on smaller screens */
+}
 
 .social-links {
   list-style: none;
   padding: 0;
-
+  display: flex;
+  justify-content: center; /* Center the social icons */
+  margin-top: 15px;
 }
 
 .social-links li {
-  display: inline;
-  margin: 0 10px;
+  display: inline-block;
+  margin: 0 15px;
+  transition: transform 0.3s ease; /* Add smooth scaling effect */
+}
+
+.social-links li:hover {
+  transform: scale(1.2); /* Enlarge on hover */
 }
 
 .social-links img {
-  width: 24px; /* Adjust size as needed */
-  height: 24px;
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) invert(1); /* Invert colors for white icons */
+  transition: filter 0.3s ease; /* Smooth color transition */
+}
+
+.social-links li:hover img {
+  filter: brightness(0.8) invert(1); /* Change brightness on hover */
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
-  gap: 10px; /* Space between columns */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive two columns */
+  gap: 20px; /* Increased gap for breathing room */
 }
 
 .column-left, .column-right {
-  padding: 10px;
-  box-sizing: border-box; /* Ensures padding is included in the width */
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .column-left {
-  background-color: lightblue;
+  background-color: rgba(135, 206, 250, 0.2); /* Subtle background */
+  border-radius: 10px;
 }
 
 .column-right {
-  background-color: lightgreen;
+  background-color: rgba(144, 238, 144, 0.2); /* Subtle background */
+  border-radius: 10px;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container1 {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    text-align: center;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr; /* Single column layout for mobile */
+  }
+
+  .social-links {
+    margin-top: 20px;
+  }
+}

@@ -1,56 +1,64 @@
 /* Faculty.css */
 .faculty {
-    background-color: #f4f4f4;
-    padding: 40px 0;
-    text-align: center;
-  }
-  
-  .faculty h2 {
-    margin-bottom: 30px;
-  }
-  
+  background: linear-gradient(to bottom, white, skyblue);
+  padding: 40px 0;
+  text-align: center;
+}
+
+.faculty h2 {
+  margin-bottom: 30px;
+  font-size: 2rem; /* Increase font size */
+  color: #2d34f8; /* Set header color */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add text shadow */
+}
+
+.faculty-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.faculty-member {
+  background-color: #a9eff0;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  transition: transform 0.3s; /* Add transition for hover effect */
+}
+
+.faculty-member:hover {
+  transform: scale(1.05); /* Scale up on hover */
+}
+
+.faculty-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid #2d34f8; /* Add border around photo */
+}
+
+.faculty-member h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.faculty-member p {
+  color: #2d34f8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .faculty-list {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .faculty-member {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 250px;
+    width: 90%;
+    margin-bottom: 20px;
   }
-  
-  .faculty-photo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 15px;
-  }
-  
-  .faculty-member h3 {
-    font-size: 18px;
-    margin-bottom: 5px;
-  }
-  
-  .faculty-member p {
-    color: #777;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .faculty-list {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .faculty-member {
-      width: 90%;
-      margin-bottom: 20px;
-    }
-  }
-  
+}

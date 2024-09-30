@@ -4,12 +4,15 @@
     justify-content: space-between;
     align-items: left;
     background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
   }
   
   .logo img {
-    height: 50px;
+    position: absolute; /* Use absolute positioning */
+            top: 0; /* Align to the top */
+            left: 0; /* Align to the left */
+            height: 80px; /* Set the height */
   }
   
  
