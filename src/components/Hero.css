@@ -15,38 +15,122 @@
   align-items: flex-start;
 }
 
+/* Logo Container for Circular Logo with Flame and Spark Effects */
 .logo-container {
-  width: 350px; /* Increased width for more elongation */
-  height: 180px; /* Decreased height to keep it elongated */
-  display: flex; /* Center the image */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  overflow: hidden; /* Ensure anything outside the shape is hidden */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow effect */
-  opacity: 0; /* Start hidden */
-  transform: translateY(-50px); /* Start position above */
-  animation: fadeInUp 0.6s forwards; /* Animation */
-  animation-delay: 0.5s; /* Delay before starting the animation */
+  width: 220px; /* Set a fixed width */
+  height: 220px; /* Set a fixed height */
+  position: relative;
+   /* Space from the left side */
 }
 
-/* Keyframes for the fadeInUp animation */
-@keyframes fadeInUp {
-  to {
-    opacity: 1; /* Final opacity */
-    transform: translateY(0); /* Final position */
+/* Circular Gradient Background */
+/* Logo Container */
+/* Logo Container */
+/* Logo Container */
+/* Logo Container */
+.logo-container {
+  width: 220px;
+  height: 220px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: linear-gradient(to bottom right, #001f3f, #5f3c91); /* Dark blue to violet */
+  overflow: visible;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+}
+
+/* Logo Styling */
+.logon {
+  width: 95%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  animation: silverShine 3s infinite; /* Silver shine effect */
+}
+
+/* Refined Violet-Pink Flame Effect */
+.logo-container::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(238, 130, 238, 0.3), transparent 60%); /* Pink-Violet flame */
+  box-shadow: 0 0 30px 15px rgba(238, 130, 238, 0.6), 0 0 40px 20px rgba(255, 105, 180, 0.5); /* Violet and pink glow */
+  animation: flameEffect 2s infinite ease-in-out; /* Subtle flickering */
+}
+
+/* Animation for Flame Effect */
+@keyframes flameEffect {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
   }
 }
 
-.logon {
-  width: 100%; /* Make the logo take the full width of the container */
-  height: 100%; /* Make the logo take the full height of the container */
-  border-radius: 10px; /* Rounded corners for the logo */
-  object-fit: cover; /* Ensures the image fills the area without distortion */
+/* Spark Effect */
+.logo-container::after {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  border-radius: 50%;
+  z-index: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%); /* White sparks */
+  box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.4), 0 0 15px 8px rgba(255, 192, 203, 0.5); /* Random spark colors */
+  animation: sparks 3s infinite linear alternate; /* Subtle random spark effect */
+}
+
+/* Animation for Sparks */
+@keyframes sparks {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1) rotate(20deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+}
+
+/* Silver Shine Effect for Logo */
+@keyframes silverShine {
+  0% {
+    background: none;
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: -30px 0px 60px 15px rgba(255, 255, 255, 0.7); /* Silver streak moving across */
+  }
+  100% {
+    background: none;
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0.2);
+  }
 }
 
 
-
+/* Original Code for Subtitle */
 .subtitle {
   font-size: 2.2rem;
   font-family: 'Garamond', serif;
@@ -75,7 +159,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap:10px;
+  gap: 10px;
 }
 
 .a-triangle .row {
@@ -121,5 +205,4 @@
   .image-collage {
     margin-top: 20px;
   }
-  
 }

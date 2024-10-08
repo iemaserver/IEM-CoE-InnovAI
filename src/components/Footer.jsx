@@ -3,7 +3,7 @@ import FacebookIcon from "../assets/icons8-facebook.svg";
 import TwitterIcon from "../assets/icons8-twitter.svg";
 import InstagramIcon from "../assets/icons8-instagram.svg";
 import ContactUs1 from "./ContactUs1";
-import Partnerships1 from "./Partnerships1";
+
 import "./Footer.css"; // Footer specific styles
 
 function Footer() {
@@ -13,7 +13,7 @@ function Footer() {
         <div className="column-left">
           <ContactUs1 />
           <div className="container1">
-            <p>&copy; 2024 IEM innovatAl</p>
+            <p>&copy; 2024 All rights reserved | This Website is made by Sumit Kumar Das and team </p>
             <ul className="social-links">
               <li>
                 <a href="#" target="_blank" rel="noopener noreferrer">
@@ -34,7 +34,7 @@ function Footer() {
           </div>
         </div>
         <div className="column-right">
-          <Partnerships1 />
+          {/* If there are any other contents in the right column, add them here */}
         </div>
       </div>
     </footer>

@@ -53,7 +53,7 @@ function Hero() {
     <section className="hero">
       <div className="text-logo-container">
         <div className="logo-container">
-          <img src={a10} alt="Logo" className="logon" />
+          <img src={logo} alt="Logo" className="logon" />
         </div>
         <div className="text-container">
           <p className="subtitle">{typedText}</p>

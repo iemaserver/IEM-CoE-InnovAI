@@ -1,79 +1,42 @@
-.footer {
-  background: linear-gradient(135deg, #333, #555); /* Gradient for a modern look */
-  color: white;
-  padding: 40px 20px; /* Add more padding for better spacing */
+/* Footer gradient background */
+footer {
+  background: linear-gradient(to right, #0810ff, #00004d);
+
+
+  color: #f0f0f0;
+  padding: 40px 20px;
   text-align: center;
 }
 
 .container1 {
-  display: flex;
-  justify-content: space-between; /* Space out items */
-  align-items: center;
-  flex-wrap: wrap; /* Ensure it wraps on smaller screens */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .social-links {
   list-style: none;
   padding: 0;
   display: flex;
-  justify-content: center; /* Center the social icons */
-  margin-top: 15px;
+  justify-content: center; /* Align horizontally */
+  gap: 20px; /* Add spacing between icons */
 }
 
 .social-links li {
   display: inline-block;
-  margin: 0 15px;
-  transition: transform 0.3s ease; /* Add smooth scaling effect */
+  transition: transform 0.3s ease;
 }
 
 .social-links li:hover {
-  transform: scale(1.2); /* Enlarge on hover */
+  transform: scale(1.1); /* Slight zoom on hover */
 }
 
 .social-links img {
-  width: 30px;
-  height: 30px;
-  filter: brightness(0) invert(1); /* Invert colors for white icons */
-  transition: filter 0.3s ease; /* Smooth color transition */
+  width: 40px;
+  height: 40px;
 }
 
-.social-links li:hover img {
-  filter: brightness(0.8) invert(1); /* Change brightness on hover */
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive two columns */
-  gap: 20px; /* Increased gap for breathing room */
-}
-
-.column-left, .column-right {
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-.column-left {
-  background-color: rgba(135, 206, 250, 0.2); /* Subtle background */
-  border-radius: 10px;
-}
-
-.column-right {
-  background-color: rgba(144, 238, 144, 0.2); /* Subtle background */
-  border-radius: 10px;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-  .container1 {
-    flex-direction: column; /* Stack items vertically on smaller screens */
-    text-align: center;
-  }
-
-  .grid-container {
-    grid-template-columns: 1fr; /* Single column layout for mobile */
-  }
-
   .social-links {
-    margin-top: 20px;
+    flex-direction: row; /* Keep icons in a row on smaller screens */
   }
 }

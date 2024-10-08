@@ -2,13 +2,22 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #e1a8a8; /* Dark background */
+  background-color: #e1a8a8; /* Light background */
 }
 
 .navbar {
-  background-color: #333333;
+ 
+  /* Dark background */
   padding: 10px;
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  color: white;
+  font-size: 24px;
+  text-decoration: none;
 }
 
 /* (Visible only on mobile) */
@@ -17,7 +26,7 @@ body {
   font-size: 30px;
   cursor: pointer;
   padding: 5px;
-  display: block; 
+  display: block;
 }
 
 .menu {
@@ -41,10 +50,16 @@ body {
   color: white;
   text-decoration: none;
   font-size: 18px;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* Hover effect for menu links */
+.menu li a:hover {
+  color: rgb(193, 97, 97); /* Change color on hover */
 }
 
 .menu.show {
-  height: 220px; 
+  height: auto; /* Adjust the height dynamically based on content */
   opacity: 1;
 }
 
@@ -90,3 +105,32 @@ body {
     font-size: 18px;
   }
 }
+
+/* For mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  .menu {
+    width: 100%; /* Make sure the menu spans full width */
+  }
+
+  .menu.show {
+    height: auto; /* Dynamically adjust height based on content */
+    opacity: 1;
+  }
+
+  .menu li {
+    padding: 10px 0; /* Vertical padding for each menu item */
+    text-align: center; /* Center the menu items */
+    transform: none;
+    opacity: 1;
+  }
+
+  .menu-toggle {
+    align-self: flex-end; /* Ensure the menu toggle aligns to the right */
+  }
+}
+
