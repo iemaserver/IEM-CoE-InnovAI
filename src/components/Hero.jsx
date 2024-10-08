@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Hero.css';
+import bloomVideo from "../assets/bloom.mp4";
 import a1 from "../assets/a1.jpg";
 import a2 from "../assets/a2.jpg";
 import a3 from "../assets/a3.jpg";
@@ -12,10 +13,9 @@ import a9 from "../assets/a9.jpg";
 import a10 from "../assets/a10.jpg";
 import logo from "../assets/logo.png";
 
-
 function Hero() {
   const [typedText, setTypedText] = useState("");
-  const subtitle = "Unnlocking the potential of artificial intelligence for a better tomorrow and prospects ";
+  const subtitle = "Unnlocking the potential of artificial intelligence <br /> for a better tomorrow and prospects "; // Add line break
 
   useEffect(() => {
     let index = 0;
@@ -24,11 +24,11 @@ function Hero() {
         setTypedText((prevText) => prevText + subtitle[index]);
         index++;
       } else {
-        clearInterval(typeInterval); // Clear interval when done
+        clearInterval(typeInterval); // Stop typing once complete
       }
-    }, 100);
+    }, 50); // Reduced delay for smoother typing
 
-    return () => clearInterval(typeInterval); // Clean up interval
+    return () => clearInterval(typeInterval); // Clean up the interval on unmount
   }, [subtitle]);
 
   // Scroll reveal logic for images
@@ -51,17 +51,17 @@ function Hero() {
 
   return (
     <section className="hero">
+      <video className="video-bg" src={bloomVideo} autoPlay muted loop playsInline />
       <div className="text-logo-container">
         <div className="logo-container">
           <img src={logo} alt="Logo" className="logon" />
         </div>
         <div className="text-container">
-          <p className="subtitle">{typedText}</p>
+          <p className="subtitle" dangerouslySetInnerHTML={{ __html: typedText }} /> {/* Use dangerouslySetInnerHTML */}
         </div>
       </div>
       <div className="image-collage">
         <div className="ai-pattern">
-          {/* Triangle for "A" */}
           <div className="a-triangle">
             <img src={a1} alt="A1" className="collage-image" />
             <div className="row">
@@ -74,7 +74,6 @@ function Hero() {
               <img src={a6} alt="A6" className="collage-image" />
             </div>
           </div>
-          {/* Column for "I" */}
           <div className="i-column">
             <img src={a7} alt="I1" className="collage-image" />
             <img src={a8} alt="I2" className="collage-image" />

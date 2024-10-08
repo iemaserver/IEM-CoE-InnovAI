@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/logo.png";
+import Logo1 from "../assets/logo1.png";
 import MenuToggle from "./MenuToggle";
 import "./Header.css"; // Import CSS specific to header
 
@@ -15,7 +15,7 @@ function Header() {
     <header className="header">
       <div className="container">
         <div className="logo">
-          <img src={Logo} alt="Logo" />
+          <img src={Logo1} alt="Logo" />
         </div>
         <nav className="nav">
           <MenuToggle toggleMenu={toggleMenu} />
