@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Hero.css';
 import bloomVideo from "../assets/bloom.mp4";
+import gloomVideo from "../assets/gloom.mp4"; // Import mobile video
 import a1 from "../assets/a1.jpg";
 import a2 from "../assets/a2.jpg";
 import a3 from "../assets/a3.jpg";
@@ -15,49 +16,77 @@ import logo from "../assets/logo.png";
 
 function Hero() {
   const [typedText, setTypedText] = useState("");
-  const subtitle = "Unnlocking the potential of artificial intelligence <br /> for a better tomorrow and prospects "; // Add line break
+  const [videoSource, setVideoSource] = useState(bloomVideo); // Track video source
+  const subtitle = "Unlocking the potential of Artificial Intelligence.";
 
   useEffect(() => {
     let index = 0;
-    const typeInterval = setInterval(() => {
-      if (index < subtitle.length) {
-        setTypedText((prevText) => prevText + subtitle[index]);
-        index++;
-      } else {
-        clearInterval(typeInterval); // Stop typing once complete
-      }
-    }, 50); // Reduced delay for smoother typing
+    let tempText = ""; // Store progressively typed text
 
-    return () => clearInterval(typeInterval); // Clean up the interval on unmount
+    const typeText = () => {
+      if (index < subtitle.length) {
+        if (subtitle[index] === "<") {
+          const closingTagIndex = subtitle.indexOf(">", index);
+          tempText += subtitle.slice(index, closingTagIndex + 1); // Add the entire tag to the text
+          setTypedText(tempText); // Update the typed text with the full tag
+          index = closingTagIndex + 1; // Skip past the entire tag
+        } else {
+          tempText += subtitle[index]; // Add the next character
+          setTypedText(tempText); // Update the state to reflect the new character
+          index++; // Move to the next character
+        }
+      } else {
+        clearInterval(typeInterval); // Stop the interval when done
+      }
+    };
+
+    const typeInterval = setInterval(typeText, 100); // Type every 100 ms
+
+    return () => clearInterval(typeInterval); // Clean up the interval on component unmount
   }, [subtitle]);
 
   // Scroll reveal logic for images
   useEffect(() => {
-    const handleScroll = () => {
-      const images = document.querySelectorAll('.collage-image');
+    const images = document.querySelectorAll('.collage-image');
+
+    // Delay reveal for 2 seconds
+    const revealImages = () => {
       images.forEach((image) => {
-        const imageTop = image.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        if (imageTop < windowHeight - 50) {
-          image.classList.add('reveal');
-        }
+        image.classList.add('reveal');
       });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Trigger the reveal for images already in view
-    return () => window.removeEventListener('scroll', handleScroll);
+    const timer = setTimeout(revealImages, 700); // 2000 ms delay
+
+    return () => clearTimeout(timer); // Clean up the timeout
+  }, []);
+
+  // Detect screen size and switch video source for mobile devices
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setVideoSource(gloomVideo); // Use gloom.mp4 for mobile
+      } else {
+        setVideoSource(bloomVideo); // Use bloom.mp4 for larger screens
+      }
+    };
+
+    handleResize(); // Check screen size on initial load
+    window.addEventListener('resize', handleResize); // Update on window resize
+
+    return () => window.removeEventListener('resize', handleResize); // Clean up the event listener
   }, []);
 
   return (
     <section className="hero">
-      <video className="video-bg" src={bloomVideo} autoPlay muted loop playsInline />
+      <video className="video-bg" src={videoSource} autoPlay muted loop playsInline />
       <div className="text-logo-container">
         <div className="logo-container">
           <img src={logo} alt="Logo" className="logon" />
         </div>
         <div className="text-container">
-          <p className="subtitle" dangerouslySetInnerHTML={{ __html: typedText }} /> {/* Use dangerouslySetInnerHTML */}
+          {/* Safely render HTML inside typedText */}
+          <p className="subtitle" dangerouslySetInnerHTML={{ __html: typedText }} />
         </div>
       </div>
       <div className="image-collage">
