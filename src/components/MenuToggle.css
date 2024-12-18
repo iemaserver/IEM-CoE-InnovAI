@@ -1,3 +1,4 @@
+/* General styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -6,21 +7,13 @@ body {
 }
 
 .navbar {
- 
-  /* Dark background */
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.logo {
-  color: white;
-  font-size: 24px;
-  text-decoration: none;
-}
-
-/* (Visible only on mobile) */
+/* Hamburger menu for mobile */
 .menu-toggle {
   color: rgb(193, 97, 97);
   font-size: 30px;
@@ -29,6 +22,7 @@ body {
   display: block;
 }
 
+/* Menu items */
 .menu {
   list-style: none;
   padding: 0;
@@ -40,7 +34,7 @@ body {
 }
 
 .menu li {
-  padding: 15px;
+  padding: 10px; /* Reduced padding */
   transform: translateY(-20px);
   opacity: 0;
   transition: transform 0.4s ease, opacity 0.4s ease;
@@ -49,17 +43,50 @@ body {
 .menu li a {
   color: white;
   text-decoration: none;
-  font-size: 18px;
-  transition: color 0.3s ease; /* Smooth color transition */
+  font-size: 20px; /* Reduced font size */
+  position: relative; /* For tooltip positioning */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px; /* Reduced size */
+  height: 40px; /* Reduced size */
+  border-radius: 50%; /* Circular shape */
+  background-color: rgb(193, 97, 97); /* Button background */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover effect for menu links */
+/* Grow and shine effect */
 .menu li a:hover {
-  color: rgb(193, 97, 97); /* Change color on hover */
+  transform: scale(1.15); /* Slightly smaller scaling */
+  box-shadow: 0 0 10px rgba(193, 97, 97, 0.8); /* Glowing effect */
 }
 
+/* Tooltip for icons */
+.menu li a::after {
+  content: attr(title); /* Use title attribute as tooltip text */
+  position: absolute;
+  bottom: -20px; /* Position slightly below the item */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 10px; /* Smaller tooltip font */
+  padding: 4px 8px;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Show tooltip on hover */
+.menu li a:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* Show menu when toggled */
 .menu.show {
-  height: auto; /* Adjust the height dynamically based on content */
+  height: auto;
   opacity: 1;
 }
 
@@ -80,6 +107,12 @@ body {
 }
 .menu.show li:nth-child(4) {
   transition-delay: 0.4s;
+}
+.menu.show li:nth-child(5) {
+  transition-delay: 0.5s;
+}
+.menu.show li:nth-child(6) {
+  transition-delay: 0.6s;
 }
 
 /* For Desktop (min-width: 768px) */
@@ -103,6 +136,17 @@ body {
 
   .menu li a {
     font-size: 18px;
+    width: auto;
+    height: auto;
+    border-radius: 0; /* Remove circular shape for desktop */
+    background-color: transparent; /* Transparent background for desktop */
+    box-shadow: none; /* No shadow for desktop links */
+    padding: 5px 10px;
+  }
+
+  .menu li a:hover {
+    transform: scale(1.15);
+    box-shadow: none; /* Disable glow effect for desktop */
   }
 }
 
@@ -114,17 +158,25 @@ body {
   }
 
   .menu {
-    width: 100%; /* Make sure the menu spans full width */
+    width: 100%; /* Ensure the menu spans full width */
+    position: absolute; /* Position the menu to overlay on the screen */
+    top: 60px; /* Space for the navbar */
+    left: 0;
+    background: rgb(193, 97, 97); /* Dark background for the dropdown menu */
+    display: none; /* Hide the menu by default */
+    flex-direction: column; /* Stack items vertically */
+    padding: 10px 0; /* Padding around the items */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Optional shadow effect */
   }
 
   .menu.show {
-    height: auto; /* Dynamically adjust height based on content */
+    display: flex; /* Show the menu when active */
     opacity: 1;
   }
 
   .menu li {
-    padding: 10px 0; /* Vertical padding for each menu item */
-    text-align: center; /* Center the menu items */
+    padding: 10px 20px; /* Vertical padding for each menu item */
+    text-align: left; /* Align text to the left */
     transform: none;
     opacity: 1;
   }
@@ -132,5 +184,16 @@ body {
   .menu-toggle {
     align-self: flex-end; /* Ensure the menu toggle aligns to the right */
   }
-}
 
+  .menu li a {
+    font-size: 20px; /* Reduced size for mobile */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Keep circular shape for mobile */
+    background-color: rgb(193, 97, 97);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+}

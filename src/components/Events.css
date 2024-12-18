@@ -33,7 +33,7 @@
     flex: 0 1 22%; /* Set each card to take about 22% of the container's width */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow */
     position: relative;
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+    transition: transform 0.3s, box-shadow 0.3s ease-in-out; /* Smooth transition */
     overflow: hidden; /* To hide overflow from pseudo-elements */
     height: 300px; /* Fixed height for uniformity */
 }
@@ -45,10 +45,10 @@
     margin-bottom: 15px;
 }
 
-/* Card hover effect */
+/* Card hover effect with shine and grow */
 .events .card:hover {
-    transform: translateY(-5px) scale(1.05); /* Scale effect on hover */
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+    transform: translateY(-10px) scale(1.1); /* Scale up and translate slightly */
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 255, 255, 0.7); /* Glowing effect */
 }
 
 .events .card h3 {

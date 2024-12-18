@@ -1,0 +1,47 @@
+/* Remove the default cursor for the entire body */
+body, button, a, input, textarea {
+  cursor: none !important;
+}
+
+/* Custom cursor base styles */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, rgba(0, 212, 255, 1), rgba(21, 0, 255, 1));
+  border-radius: 50%;
+  pointer-events: none; /* Prevent interference with clicks */
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  mix-blend-mode: difference; /* Interactive look on colored backgrounds */
+  transition: transform 0.1s ease-out, box-shadow 0.2s ease;
+  animation: cursorPulse 2s infinite;
+  box-shadow: 0 0 20px 5px rgba(232, 7, 123, 0.8);
+}
+
+/* Pulse animation for a dynamic AI-like effect */
+@keyframes cursorPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 20px 5px rgba(232, 7, 123, 0.8);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    box-shadow: 0 0 30px 10px rgba(0, 229, 255, 0.8);
+  }
+}
+
+/* Hover effect when interacting with clickable elements */
+.custom-cursor.hovered {
+  width: 30px;
+  height: 30px;
+  background: radial-gradient(circle, rgba(232, 7, 123, 1), rgba(0, 229, 255, 0.8));
+  transform: translate(-50%, -50%) scale(1.5);
+  box-shadow: 0 0 40px 15px rgba(0, 229, 255, 0.8);
+  animation: none; /* Stop pulse animation on hover */
+}
+
+/* Additional hover scale for links/buttons */
+a:hover, button:hover {
+  color: rgba(0, 229, 255, 0.8); /* Optional color change for links */
+}

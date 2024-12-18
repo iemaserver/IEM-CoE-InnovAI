@@ -1,12 +1,11 @@
 /* Research.css */
 .research {
-  background: linear-gradient(to bottom right, #ffffff, #87ceeb); /* Gradient background */
   padding: 40px 0;
   text-align: center;
 }
 
 .research h2 {
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 20px;
 }
 

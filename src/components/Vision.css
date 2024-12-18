@@ -1,12 +1,20 @@
 /* Vision.css */
+.wrapper {
+  background-size: cover; /* Ensure the background fits the sections */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent repetition */
+  transition: background-image 1s ease-in-out; /* Smooth transition for background changes */
+  min-height: 1200px; /* Adjust the height to cover both sections */
+}
+
 .vision {
-  background: linear-gradient(to bottom, white, skyblue); /* Gradient background */
-  padding: 40px 0;
+  padding: 60px 0; /* Increased padding for elongation */
   text-align: center;
+  min-height: 600px; /* Elongate section vertically */
 }
 
 .vision h2 {
-  font-size: 2rem;
+  font-size: 3rem;
   margin-bottom: 20px;
 }
 
@@ -19,33 +27,127 @@
 .card {
   background-color: #f0f0f0;
   border: 1px solid #ddd;
-  border-radius: 10px; /* Increased border-radius for a softer look */
+  border-radius: 10px;
   padding: 20px;
-  margin: 20px; /* Increased margin for spacing */
-  width: 250px; /* Set a fixed width for consistency */
-  display: flex; /* Use flexbox for alignment */
-  flex-direction: column; /* Stack image and text vertically */
-  align-items: center; /* Center contents */
-  position: relative; /* Position for pseudo-elements */
-  transition: transform 0.3s; /* Smooth scaling on hover */
+  margin: 20px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.3s;
 }
 
-/* Zigzag effect using nth-child */
 .card:nth-child(odd) {
-  margin-top: 30px; /* Extra margin to push odd cards down */
+  margin-top: 30px;
 }
 
 .card:nth-child(even) {
-  margin-bottom: 30px; /* Extra margin to push even cards up */
+  margin-bottom: 30px;
 }
 
 .card:hover {
-  transform: scale(1.05); /* Slightly enlarge on hover */
+  transform: scale(1.05);
 }
 
-/* Card image styling */
 .card-image {
-  width: 100px; /* Set a fixed width for images */
-  height: auto; /* Maintain aspect ratio */
-  margin-bottom: 10px; /* Space between image and text */
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+/* Vision.css */
+
+/* Make sure the "Our Vision" has font size 3rem and the left to right glowing effect */
+h2 {
+  font-size: 3rem; /* "Our Vision" font size */
+  text-align: center;
+  margin-bottom: 20px;
+  background-image: linear-gradient(to right, violet, darkblue, orange, green);
+  background-size: 200% 100%; /* Make the gradient larger than the text */
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text; /* Safari support */
+  animation: glowingText 8s infinite; /* Slowed down total duration */
+}
+
+/* Make sure the "To leverage..." text has font size 2rem and glowing effect */
+p {
+  font-size: 2rem; /* "To leverage..." font size */
+  text-align: center;
+  background-image: linear-gradient(to right, violet, darkblue, orange, green);
+  background-size: 200% 100%; /* Make the gradient larger than the text */
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text; /* Safari support */
+  animation: glowingText 8s infinite; /* Slowed down total duration */
+}
+
+/* Apply a glowing effect to the text inside the cards */
+.card h3, .card p {
+  text-align: center;
+  font-size: 1.2rem; /* Text inside the cards */
+  background-image: linear-gradient(to right, violet, darkblue, orange, green);
+  background-size: 200% 100%; /* Make the gradient larger than the text */
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text; /* Safari support */
+  animation: glowingText 8s infinite; /* Slowed down total duration */
+}
+
+/* Keyframes for the left to right color transition effect */
+@keyframes glowingText {
+  0% {
+    background-position: -200% 0%; /* Start the gradient off-screen on the left */
+  }
+  25% {
+    background-position: 200% 0%; /* Fast movement to the right */
+  }
+  50% {
+    background-position: 200% 0%; /* Slow down */
+  }
+  75% {
+    background-position: 200% 0%; /* Continue slow */
+  }
+  100% {
+    background-position: -200% 0%; /* Return to the left */
+  }
+}
+
+/* Cards' basic styles */
+.vision .vision-cards {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping of cards */
+  justify-content: center; /* Center cards in the flex container */
+}
+
+.card {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.card:nth-child(odd) {
+  margin-top: 30px;
+}
+
+.card:nth-child(even) {
+  margin-bottom: 30px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-image {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
 }

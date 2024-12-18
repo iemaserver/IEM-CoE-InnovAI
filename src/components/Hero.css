@@ -411,3 +411,23 @@
     margin-top: 20px;
   }
 }
+.subtitle {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(90deg, #ADD8E6, #FFD700, #C0C0C0, #ADD8E6);
+  background-size: 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shineInfinite 5s linear infinite;
+}
+
+@keyframes shineInfinite {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
