@@ -12,7 +12,7 @@ import a7 from "../assets/a7.jpg";
 import a8 from "../assets/a8.jpg";
 import a9 from "../assets/a9.jpg";
 import a10 from "../assets/a10.jpg";
-import logo from "../assets/logo.png";
+import logo from "../assets/Logo.png";
 
 function Hero() {
   const [typedText, setTypedText] = useState("");
