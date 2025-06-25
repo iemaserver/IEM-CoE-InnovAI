@@ -16,9 +16,9 @@ body {
 /* Hamburger menu for mobile */
 .menu-toggle {
   color: rgb(193, 97, 97);
-  font-size: 30px;
+  font-size: 36px;
   cursor: pointer;
-  padding: 5px;
+  padding: 8px;
   display: block;
 }
 
@@ -34,7 +34,7 @@ body {
 }
 
 .menu li {
-  padding: 10px; /* Reduced padding */
+  padding: 15px; /* Increased padding */
   transform: translateY(-20px);
   opacity: 0;
   transition: transform 0.4s ease, opacity 0.4s ease;
@@ -43,13 +43,13 @@ body {
 .menu li a {
   color: white;
   text-decoration: none;
-  font-size: 20px; /* Reduced font size */
+  font-size: 24px; /* Increased font size */
   position: relative; /* For tooltip positioning */
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px; /* Reduced size */
-  height: 40px; /* Reduced size */
+  width: 50px; /* Increased size */
+  height: 50px; /* Increased size */
   border-radius: 50%; /* Circular shape */
   background-color: rgb(193, 97, 97); /* Button background */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -65,13 +65,13 @@ body {
 .menu li a::after {
   content: attr(title); /* Use title attribute as tooltip text */
   position: absolute;
-  bottom: -20px; /* Position slightly below the item */
+  bottom: -25px; /* Position slightly below the item */
   left: 50%;
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  font-size: 10px; /* Smaller tooltip font */
-  padding: 4px 8px;
+  font-size: 12px; /* Increased tooltip font */
+  padding: 6px 10px;
   border-radius: 4px;
   opacity: 0;
   pointer-events: none;
@@ -127,21 +127,20 @@ body {
     opacity: 1;
     flex-direction: row; /* Make menu items appear in a row */
   }
-
   .menu li {
     transform: none;
     opacity: 1;
-    padding: 0 20px; /* Add space between menu items */
+    padding: 0 25px; /* Increased space between menu items */
   }
 
   .menu li a {
-    font-size: 18px;
+    font-size: 22px; /* Increased font size for desktop */
     width: auto;
     height: auto;
     border-radius: 0; /* Remove circular shape for desktop */
     background-color: transparent; /* Transparent background for desktop */
     box-shadow: none; /* No shadow for desktop links */
-    padding: 5px 10px;
+    padding: 8px 15px; /* Increased padding */
   }
 
   .menu li a:hover {
@@ -173,9 +172,8 @@ body {
     display: flex; /* Show the menu when active */
     opacity: 1;
   }
-
   .menu li {
-    padding: 10px 20px; /* Vertical padding for each menu item */
+    padding: 15px 25px; /* Increased vertical and horizontal padding for each menu item */
     text-align: left; /* Align text to the left */
     transform: none;
     opacity: 1;
@@ -186,9 +184,9 @@ body {
   }
 
   .menu li a {
-    font-size: 20px; /* Reduced size for mobile */
-    width: 40px;
-    height: 40px;
+    font-size: 24px; /* Increased size for mobile */
+    width: 50px; /* Increased size */
+    height: 50px; /* Increased size */
     border-radius: 50%; /* Keep circular shape for mobile */
     background-color: rgb(193, 97, 97);
     text-align: center;
