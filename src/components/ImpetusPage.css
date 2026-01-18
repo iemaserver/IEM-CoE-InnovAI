@@ -1,0 +1,213 @@
+/* ImpetusPage.css */
+
+.impetus-page {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  padding-top: var(--header-height);
+}
+
+/* Hero Section */
+.impetus-hero {
+  position: relative;
+  padding: 100px 0 80px;
+  text-align: center;
+  background: radial-gradient(circle at center, #1a1a25 0%, #000 100%);
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    linear-gradient(rgba(138, 43, 226, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(138, 43, 226, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.3;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(138, 43, 226, 0.2);
+  color: var(--primary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(138, 43, 226, 0.5);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.impetus-hero h1 {
+  font-size: 5rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+}
+
+.sub-title {
+  font-size: 2rem;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.organizers p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.organizers .highlight {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Stats Dashboard */
+.impetus-stats {
+  background: var(--bg-card);
+  padding: 50px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.impetus-stats .container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.stat-card {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Content Grid */
+.impetus-content {
+  padding: 80px 0;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 50px;
+}
+
+.text-block h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #fff;
+  border-left: 4px solid var(--secondary);
+  padding-left: 15px;
+}
+
+.text-block p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+/* Highlights */
+.impetus-highlights {
+  padding: 60px 0;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.impetus-highlights h3, .impetus-gallery h3, .impetus-faculty h3 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #fff;
+}
+
+.highlight-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.highlight-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 16px;
+  width: 300px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.highlight-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+/* Gallery */
+.impetus-gallery {
+  padding: 80px 0;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.gallery-img-wrapper {
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gallery-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.gallery-img-wrapper:hover img {
+  transform: scale(1.1);
+}
+
+.placeholder {
+  background: #2a2a35;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+  font-family: monospace;
+}
+
+/* Faculty */
+.faculty-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding-bottom: 80px;
+}
+
+.faculty-card.small {
+  width: 300px;
+  background: linear-gradient(145deg, #1a1a20, #0a0a10);
+}

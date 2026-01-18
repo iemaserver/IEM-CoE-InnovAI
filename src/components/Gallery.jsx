@@ -11,6 +11,8 @@ import g5 from "../assets/g5.jpg";
 import g6 from "../assets/g6.jpg";
 import g7 from "../assets/g7.jpg";
 import g8 from "../assets/g8.jpg";
+import newG1 from "../assets/new_g1.jpg";
+import newG2 from "../assets/new_g2.jpg";
 
 // Image data array
 const galleryData = [
@@ -22,6 +24,8 @@ const galleryData = [
   { id: 6, img: g6 },
   { id: 7, img: g7 },
   { id: 8, img: g8 },
+  { id: 9, img: newG1 },
+  { id: 10, img: newG2 },
 ];
 
 function Gallery() {
