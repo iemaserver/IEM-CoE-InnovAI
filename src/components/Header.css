@@ -24,6 +24,7 @@
   align-items: center;
   width: 90%;
   max-width: var(--max-width);
+  position: relative; /* Added for mobile absolute positioning */
 }
 
 .nav {
@@ -237,4 +238,19 @@
 @keyframes breathe {
   0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
   50% { transform: scale(1.05); filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.3)); }
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  .header .container {
+    justify-content: center; /* Center main content */
+  }
+
+  .nav {
+    position: absolute; /* Detach from flow */
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+  }
 }

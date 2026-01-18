@@ -187,6 +187,7 @@
   .hero-content { flex-direction: column; text-align: center; }
   .text-section { padding-right: 0; margin-bottom: 50px; }
   .subtitle-wrapper { margin: 0 auto; text-align: left; }
+  .logo-wrapper { margin-left: auto; margin-right: auto; }
   
   /* Flatten for mobile readability, or keep slight tilt */
   .ai-pattern-container {
