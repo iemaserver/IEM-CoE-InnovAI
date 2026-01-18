@@ -5,19 +5,29 @@ import "./Header.css";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
-  const [scrollState, setScrollState] = useState("opening"); // opening, open, closing, closed
+  const [scrollState, setScrollState] = useState("opening"); // opening, generating, open, closing, closed
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
 
   useEffect(() => {
-    // Advanced Sequence Timeline
-    const openTimer = setTimeout(() => setScrollState("open"), 1200); // Allow time for expansion
-    const closeTimer = setTimeout(() => setScrollState("closing"), 6000); // Longer display time
-    const closedTimer = setTimeout(() => setScrollState("closed"), 7000); // Final state
+    // Precise Sequence Timeline
+    // 1. Opening: Handles appear (0ms)
+    // 2. Generating: Handles separate & Laser scans logo (800ms)
+    const genTimer = setTimeout(() => setScrollState("generating"), 800); 
+    
+    // 3. Open: Scan complete, logo fully visible, hologram stabilizes (3000ms)
+    const openTimer = setTimeout(() => setScrollState("open"), 3000); 
+
+    // 4. Closing: Handles fade out (6000ms)
+    const closeTimer = setTimeout(() => setScrollState("closing"), 6000); 
+    
+    // 5. Closed: Clean state (7000ms)
+    const closedTimer = setTimeout(() => setScrollState("closed"), 7000); 
 
     return () => {
+      clearTimeout(genTimer);
       clearTimeout(openTimer);
       clearTimeout(closeTimer);
       clearTimeout(closedTimer);
@@ -32,33 +42,30 @@ function Header() {
           <MenuToggle toggleMenu={toggleMenu} />
         </nav>
 
-        {/* ULTRA-ENHANCED LOGO SCROLL */}
+        {/* AI GENERATION SCROLL */}
         <div className={`logo-scroll-container ${scrollState}`}>
           
           {/* Left Energy Core */}
           <div className="scroll-handle left">
-            <div className="core-glow"></div>
+            <div className="core-beam"></div>
           </div>
 
-          {/* Holographic Projection Screen */}
+          {/* Holographic Projection Area */}
           <div className="hologram-screen">
             <div className="digital-grid"></div>
-            <div className="scan-beam"></div>
             
-            {/* Multi-Layered Glitch Logo */}
+            {/* The Scanning Laser */}
+            <div className="scan-laser-line"></div>
+
+            {/* The Logo Being Generated */}
             <div className="logo-construct">
-              {/* Cyan Channel */}
-              <img src={Logo1} alt="" className="logo-layer glitch-cyan" />
-              {/* Violet Channel */}
-              <img src={Logo1} alt="" className="logo-layer glitch-violet" />
-              {/* Main Logo */}
-              <img src={Logo1} alt="IEM Logo" className="logo-layer base" />
+              <img src={Logo1} alt="IEM Logo" className="header-logo" />
             </div>
           </div>
 
           {/* Right Energy Core */}
           <div className="scroll-handle right">
-            <div className="core-glow"></div>
+            <div className="core-beam"></div>
           </div>
 
         </div>

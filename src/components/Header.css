@@ -31,7 +31,7 @@
   align-items: center;
 }
 
-/* --- ULTRA-ENHANCED SCROLL CONTAINER --- */
+/* --- AI GENERATION SCROLL CONTAINER --- */
 
 .logo-scroll-container {
   position: relative;
@@ -39,202 +39,180 @@
   align-items: center;
   justify-content: center;
   height: 60px;
-  perspective: 1000px; /* For 3D depth */
+  /* Fixed min-width to prevent shifting when effects vanish */
+  min-width: 180px; 
 }
 
-/* 1. The Energy Handles (Scroll Bars) */
+/* 1. Energy Handles (The Scroll Ends) */
 .scroll-handle {
-  width: 8px;
-  height: 0px; /* Start invisible */
-  background: linear-gradient(180deg, #2a004e, #8a2be2, #00f0ff, #8a2be2, #2a004e);
+  width: 6px;
+  height: 0; /* Start hidden */
+  background: #8a2be2;
+  box-shadow: 0 0 15px #8a2be2;
   border-radius: 4px;
-  box-shadow: 0 0 15px var(--primary);
   position: relative;
   z-index: 10;
-  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Elastic bounce */
+  transition: height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
 }
 
-.core-glow {
+.core-beam {
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 200%; height: 50%;
-  background: radial-gradient(circle, white, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.3s;
+  top: 10%; left: 50%; transform: translateX(-50%);
+  width: 2px; height: 80%;
+  background: #fff;
+  opacity: 0.8;
 }
 
-/* 2. The Hologram Screen (Center) */
+/* 2. Hologram Screen (The Space Between) */
 .hologram-screen {
-  width: 0;
-  height: 48px;
-  background: rgba(15, 5, 30, 0.8);
-  border-top: 1px solid rgba(138, 43, 226, 0.5);
-  border-bottom: 1px solid rgba(138, 43, 226, 0.5);
   position: relative;
-  overflow: hidden;
+  height: 50px;
+  width: 0; /* Starts closed */
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: width 1s cubic-bezier(0.19, 1, 0.22, 1); /* Futuristic ease */
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  /* Background only visible during generation */
+  background: transparent;
+  transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Digital Grid Background */
+/* 3. The Digital Grid (Background Effect) */
 .digital-grid {
   position: absolute;
-  top: 0; left: 0; width: 200%; height: 100%;
-  background-image: 
-    linear-gradient(rgba(0, 240, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 240, 255, 0.1) 1px, transparent 1px);
-  background-size: 10px 10px;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: linear-gradient(rgba(138, 43, 226, 0.2) 1px, transparent 1px);
+  background-size: 100% 5px;
   opacity: 0;
+  z-index: 1;
 }
 
-/* Scan Beam */
-.scan-beam {
+/* 4. The Scan Laser (The Generator) */
+.scan-laser-line {
   position: absolute;
-  top: 0; left: -20px;
-  width: 10px; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.8), transparent);
-  filter: blur(2px);
+  top: 0; left: 0;
+  width: 2px; height: 100%;
+  background: #00f0ff; /* Cyan Laser */
+  box-shadow: 0 0 15px #00f0ff;
   z-index: 5;
   opacity: 0;
+  transform: translateX(-100px); /* Start off-screen */
 }
 
-/* 3. The Logo Construction */
+/* 5. The Logo (Being Constructed) */
 .logo-construct {
   position: relative;
-  width: 50px; height: 50px;
+  z-index: 2;
+  width: 50px; 
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.logo-layer {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: contain;
-  opacity: 0;
+.header-logo {
+  height: 45px;
+  width: auto;
+  /* Critical for "Generation" effect: Start masked */
+  clip-path: inset(0 100% 0 0); 
+  filter: drop-shadow(0 0 0 transparent);
+  transition: filter 0.5s;
 }
 
-/* --- ANIMATION STATES --- */
+/* --- ANIMATION SEQUENCE STATES --- */
 
-/* STATE: OPENING (Ignition & Expand) */
+/* STATE 1: OPENING (Handles Appear & Separate) */
 .logo-scroll-container.opening .scroll-handle {
-  height: 50px; /* Handles grow */
-  box-shadow: 0 0 25px #8a2be2;
-}
-.logo-scroll-container.opening .core-glow {
-  opacity: 1; /* Bright flash */
+  height: 45px;
 }
 .logo-scroll-container.opening .hologram-screen {
-  width: 180px; /* Screen expands */
-}
-.logo-scroll-container.opening .digital-grid {
-  opacity: 1;
-  animation: gridMove 20s linear infinite;
+  width: 140px; /* Expand to full width immediately */
+  border-top: 1px solid rgba(138, 43, 226, 0.3);
+  border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+  background: rgba(10, 5, 20, 0.4);
 }
 
-/* STATE: OPEN (Materialize Logo) */
+/* STATE 2: GENERATING (Laser Scans & Logo Appears) */
+.logo-scroll-container.generating .scroll-handle {
+  height: 45px;
+}
+.logo-scroll-container.generating .hologram-screen {
+  width: 140px;
+  border-top: 1px solid rgba(138, 43, 226, 0.3);
+  border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+  background: rgba(10, 5, 20, 0.4);
+}
+.logo-scroll-container.generating .digital-grid {
+  opacity: 1;
+}
+.logo-scroll-container.generating .scan-laser-line {
+  opacity: 1;
+  /* Laser moves from Left to Right */
+  animation: laserScan 2s linear forwards;
+}
+.logo-scroll-container.generating .header-logo {
+  /* Logo reveals as laser moves */
+  animation: revealLogo 2s linear forwards;
+  filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.8)); /* Glow while generating */
+}
+
+/* STATE 3: OPEN (Stabilized Hologram) */
 .logo-scroll-container.open .scroll-handle {
-  height: 50px;
+  height: 45px;
 }
 .logo-scroll-container.open .hologram-screen {
-  width: 180px;
+  width: 140px;
+  border-color: rgba(138, 43, 226, 0.1);
+  background: transparent;
 }
-.logo-scroll-container.open .digital-grid {
-  opacity: 0.5;
-}
-/* Trigger Glitch Animation */
-.logo-scroll-container.open .base {
-  opacity: 1;
-  animation: logoSnapIn 0.8s ease-out forwards;
-}
-.logo-scroll-container.open .glitch-cyan {
-  animation: glitchAnim 2s infinite alternate-reverse;
-  opacity: 0.7;
-}
-.logo-scroll-container.open .glitch-violet {
-  animation: glitchAnim 2.5s infinite alternate;
-  opacity: 0.7;
-}
-.logo-scroll-container.open .scan-beam {
-  opacity: 1;
-  animation: scanPass 2s ease-in-out infinite;
+.logo-scroll-container.open .header-logo {
+  clip-path: inset(0 0 0 0); /* Fully visible */
+  filter: drop-shadow(0 0 5px rgba(138, 43, 226, 0.5));
 }
 
-/* STATE: CLOSING (Retract) */
-.logo-scroll-container.closing .hologram-screen {
-  width: 55px; /* Collapse to just logo width */
-  background: transparent;
-  border-color: transparent;
-  box-shadow: none;
-}
+/* STATE 4: CLOSING (Handles Fade Out - NO SHIFTING) */
 .logo-scroll-container.closing .scroll-handle {
-  height: 0; /* Handles vanish */
   opacity: 0;
+  transform: scaleY(0); /* Shrink vertically */
 }
-.logo-scroll-container.closing .digital-grid,
-.logo-scroll-container.closing .scan-beam,
-.logo-scroll-container.closing .glitch-cyan,
-.logo-scroll-container.closing .glitch-violet {
-  display: none; /* Kill effects */
+.logo-scroll-container.closing .hologram-screen {
+  width: 140px; /* Keep width! Don't shrink! */
+  border-color: transparent;
 }
-.logo-scroll-container.closing .base {
-  opacity: 1;
-  filter: drop-shadow(0 0 0 transparent);
+.logo-scroll-container.closing .header-logo {
+  clip-path: inset(0 0 0 0);
+  filter: drop-shadow(0 0 0 transparent); /* Remove glow */
+  transition: filter 1s ease;
 }
 
-/* STATE: CLOSED (Clean) */
-.logo-scroll-container.closed .hologram-screen {
-  width: auto;
-  background: transparent;
-  border: none;
-}
+/* STATE 5: CLOSED (Clean) */
 .logo-scroll-container.closed .scroll-handle {
   display: none;
 }
-.logo-scroll-container.closed .base {
-  opacity: 1;
-  animation: breathe 4s infinite ease-in-out; /* Gentle pulse */
+.logo-scroll-container.closed .hologram-screen {
+  width: 140px; /* Stays stable */
+  border: none;
 }
-.logo-scroll-container.closed .glitch-cyan,
-.logo-scroll-container.closed .glitch-violet {
-  display: none;
+.logo-scroll-container.closed .header-logo {
+  clip-path: inset(0 0 0 0);
+  opacity: 1;
+  /* Gentle Pulse */
+  animation: breathe 4s infinite ease-in-out;
 }
 
 /* --- KEYFRAMES --- */
 
-@keyframes gridMove {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+@keyframes laserScan {
+  0% { left: 0; }
+  100% { left: 100%; }
 }
 
-@keyframes scanPass {
-  0% { left: -20%; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { left: 120%; opacity: 0; }
-}
-
-@keyframes logoSnapIn {
-  0% { transform: scale(0) rotateY(90deg); opacity: 0; filter: blur(10px); }
-  60% { transform: scale(1.1); opacity: 1; filter: blur(0px); }
-  100% { transform: scale(1); }
-}
-
-@keyframes glitchAnim {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
+@keyframes revealLogo {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
 }
 
 @keyframes breathe {
-  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(138, 43, 226, 0.3)); }
-  50% { transform: scale(1.05); filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.5)); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
