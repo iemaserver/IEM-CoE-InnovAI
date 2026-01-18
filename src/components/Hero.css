@@ -1,4 +1,6 @@
 /* Hero.css */
+/* ... (Keep existing Canvas and Text styles) ... */
+
 .hero {
   position: relative;
   min-height: 100vh;
@@ -16,7 +18,7 @@
   width: 100%;
   height: 100%;
   z-index: 0;
-  opacity: 0.6; /* Slight transparency so text pops */
+  opacity: 0.6;
   background: radial-gradient(circle at center, #0a0a0f 0%, #000000 100%);
 }
 
@@ -27,10 +29,10 @@
   position: relative;
   z-index: 2;
   width: 100%;
-  pointer-events: none; /* Let clicks pass through to canvas if needed, but we usually want text selectable. */
+  pointer-events: none;
 }
 .hero-content * {
-  pointer-events: auto; /* Re-enable pointer events for content */
+  pointer-events: auto; 
 }
 
 /* Text Section */
@@ -70,16 +72,14 @@
   letter-spacing: -2px;
 }
 
-.dot {
-  color: var(--primary);
-}
+.dot { color: var(--primary); }
 
 .subtitle-wrapper {
   display: flex;
   align-items: center;
   font-size: 1.25rem;
   color: var(--text-secondary);
-  font-family: 'JetBrains Mono', monospace; /* More code-like font */
+  font-family: 'JetBrains Mono', monospace; 
   min-height: 1.5em;
   background: rgba(0,0,0,0.3);
   padding: 10px;
@@ -106,70 +106,86 @@
   50% { opacity: 0; }
 }
 
-/* Visual Section (Collage) */
+/* --- AI Pattern Collage (Visual Section) --- */
+
 .visual-section {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1000px;
+  perspective: 1000px; /* For 3D floating effect */
 }
 
-.floating-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  transform: rotateX(10deg) rotateY(-15deg) rotateZ(5deg);
-  animation: float 8s ease-in-out infinite;
+.ai-pattern-container {
+  display: flex;
+  gap: 40px; /* Space between 'A' and 'I' */
+  align-items: center;
+  transform: rotateX(5deg) rotateY(-10deg);
+  animation: float 6s ease-in-out infinite;
 }
 
-.collage-group {
+/* Common Image Style */
+.collage-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: grayscale(30%);
+}
+
+.collage-img:hover {
+  transform: scale(1.15) translateZ(20px);
+  filter: grayscale(0%);
+  border-color: var(--primary);
+  box-shadow: 0 0 25px var(--primary-glow);
+  z-index: 10;
+}
+
+/* Shape 'A' Structure */
+.shape-a {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  gap: 10px;
 }
 
-.grid-img {
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy hover */
-  filter: grayscale(40%) contrast(1.1);
-}
+.row-1 { display: flex; justify-content: center; } /* 1 Image */
+.row-2 { display: flex; gap: 10px; }             /* 2 Images */
+.row-3 { display: flex; gap: 10px; }             /* 3 Images */
 
-.grid-img:hover {
-  transform: scale(1.15) translateZ(30px);
-  border-color: var(--primary);
-  box-shadow: 0 0 30px var(--primary-glow);
-  z-index: 10;
-  filter: grayscale(0%) contrast(1.2);
+/* Shape 'I' Structure */
+.shape-i {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-
-/* Group specific alignments */
-.group-1 { margin-top: 60px; }
-.group-2 { margin-top: 0px; }
-.group-3 { margin-top: 60px; }
-.group-4 { display: none; } 
 
 @keyframes float {
-  0%, 100% { transform: rotateX(10deg) rotateY(-15deg) translateY(0); }
-  50% { transform: rotateX(10deg) rotateY(-15deg) translateY(-25px); }
+  0%, 100% { transform: rotateX(5deg) rotateY(-10deg) translateY(0); }
+  50% { transform: rotateX(5deg) rotateY(-10deg) translateY(-20px); }
 }
 
 /* Responsive */
 @media (max-width: 992px) {
   .hero-title { font-size: 4rem; }
-  .grid-img { width: 90px; height: 90px; }
+  .collage-img { width: 60px; height: 60px; }
 }
 
 @media (max-width: 768px) {
   .hero-content { flex-direction: column; text-align: center; }
   .text-section { padding-right: 0; margin-bottom: 50px; }
   .subtitle-wrapper { margin: 0 auto; text-align: left; }
-  .logo-wrapper { margin: 0 auto 20px; }
-  .floating-grid { transform: none; animation: none; }
-  .grid-img { width: 80px; height: 80px; }
+  
+  .ai-pattern-container {
+    transform: none; /* Disable 3D rotate on mobile for clearer view */
+    gap: 20px;
+    animation: none;
+  }
+  
+  .shape-a, .shape-i { gap: 5px; }
+  .row-2, .row-3 { gap: 5px; }
+  .collage-img { width: 50px; height: 50px; }
 }

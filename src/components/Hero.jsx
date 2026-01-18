@@ -39,7 +39,7 @@ function Hero() {
     return () => clearInterval(typeInterval);
   }, []);
 
-  // Neural Network Canvas Animation
+  // Neural Network Canvas Animation (Unchanged)
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -67,7 +67,6 @@ function Hero() {
         this.x += this.vx;
         this.y += this.vy;
 
-        // Bounce off edges
         if (this.x < 0 || this.x > width) this.vx *= -1;
         if (this.y < 0 || this.y > height) this.vy *= -1;
       }
@@ -75,22 +74,20 @@ function Hero() {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 240, 255, 0.5)'; // Cyan
+        ctx.fillStyle = 'rgba(0, 240, 255, 0.5)'; 
         ctx.fill();
       }
     }
 
-    // Create Particles
     const initParticles = () => {
       particles = [];
-      const particleCount = Math.min(window.innerWidth / 10, 100); // Responsive count
+      const particleCount = Math.min(window.innerWidth / 10, 100);
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
     };
     initParticles();
 
-    // Mouse Interaction
     let mouse = { x: null, y: null };
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.x;
@@ -104,7 +101,6 @@ function Hero() {
         p.update();
         p.draw();
 
-        // Connect particles
         for (let j = index + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dx = p.x - p2.x;
@@ -121,20 +117,17 @@ function Hero() {
           }
         }
 
-        // Connect to mouse
         if (mouse.x) {
           const dx = p.x - mouse.x;
           const dy = p.y - mouse.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
           if (distance < 200) {
              ctx.beginPath();
-            ctx.strokeStyle = `rgba(112, 0, 255, ${1 - distance / 200})`; // Purple connection to mouse
+            ctx.strokeStyle = `rgba(112, 0, 255, ${1 - distance / 200})`;
             ctx.lineWidth = 0.8;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(mouse.x, mouse.y);
             ctx.stroke();
-            
-            // Subtle attraction
             p.x -= dx * 0.005;
             p.y -= dy * 0.005;
           }
@@ -169,26 +162,33 @@ function Hero() {
           </div>
         </div>
         
+        {/* Restored AI Shape Collage */}
         <div className="visual-section">
-          <div className="floating-grid">
-            {/* Preserving the original collage structure but styling it better */}
-            <div className="collage-group group-1">
-              <img src={a1} alt="" className="grid-img" />
+          <div className="ai-pattern-container">
+            
+            {/* The 'A' Shape */}
+            <div className="shape-a">
+              <div className="row-1">
+                <img src={a1} alt="" className="collage-img" />
+              </div>
+              <div className="row-2">
+                <img src={a2} alt="" className="collage-img" />
+                <img src={a3} alt="" className="collage-img" />
+              </div>
+              <div className="row-3">
+                <img src={a4} alt="" className="collage-img" />
+                <img src={a5} alt="" className="collage-img" />
+                <img src={a6} alt="" className="collage-img" />
+              </div>
             </div>
-            <div className="collage-group group-2">
-              <img src={a2} alt="" className="grid-img" />
-              <img src={a3} alt="" className="grid-img" />
+
+            {/* The 'I' Shape */}
+            <div className="shape-i">
+              <img src={a7} alt="" className="collage-img" />
+              <img src={a8} alt="" className="collage-img" />
+              <img src={a9} alt="" className="collage-img" />
             </div>
-            <div className="collage-group group-3">
-              <img src={a4} alt="" className="grid-img" />
-              <img src={a5} alt="" className="grid-img" />
-              <img src={a6} alt="" className="grid-img" />
-            </div>
-            <div className="collage-group group-4">
-              <img src={a7} alt="" className="grid-img" />
-              <img src={a8} alt="" className="grid-img" />
-              <img src={a9} alt="" className="grid-img" />
-            </div>
+
           </div>
         </div>
       </div>
