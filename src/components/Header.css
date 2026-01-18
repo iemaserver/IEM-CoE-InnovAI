@@ -1,3 +1,4 @@
+/* Header.css */
 .header {
   position: fixed;
   top: 0;
@@ -23,13 +24,137 @@
   max-width: var(--max-width);
 }
 
-.logo img {
-  height: 40px;
-  width: auto;
-  filter: brightness(1.2);
-}
-
 .nav {
   display: flex;
   align-items: center;
+}
+
+/* --- LOGO SCROLL ANIMATION --- */
+
+.logo-scroll-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  overflow: visible;
+}
+
+.scroll-content {
+  position: relative;
+  overflow: hidden;
+  width: 0; /* Start hidden */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.23, 1, 0.32, 1), background 1s ease;
+}
+
+.header-logo {
+  height: 50px;
+  width: auto;
+  opacity: 0; /* Start invisible */
+  transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+/* The Scroll Bars (Cylinders) */
+.scroll-bar {
+  width: 6px;
+  height: 40px;
+  background: linear-gradient(to bottom, #ffd700, #ffaa00, #ffd700); /* Golden Scroll */
+  border-radius: 4px;
+  box-shadow: 0 0 10px #ffaa00;
+  transition: all 1s ease;
+  z-index: 2;
+}
+
+/* Opening State */
+.logo-scroll-container.opening .scroll-content {
+  width: 180px; /* Expand width */
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 215, 0, 0.3); /* Golden border */
+}
+
+.logo-scroll-container.opening .header-logo,
+.logo-scroll-container.open .header-logo {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.logo-scroll-container.opening .scroll-bar {
+  height: 55px; /* Grow slightly */
+}
+
+/* Fully Open State (Shine time) */
+.logo-scroll-container.open .scroll-content {
+  width: 180px;
+}
+
+/* Shine Effect */
+.shine-effect {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  transform: skewX(-25deg);
+  z-index: 3;
+}
+
+.logo-scroll-container.open .shine-effect {
+  animation: shineScroll 2s infinite;
+}
+
+@keyframes shineScroll {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* Closing State (Retract Scroll Bars) */
+.logo-scroll-container.closing .scroll-content {
+  background: transparent;
+  border-color: transparent;
+  width: 60px; /* Shrink to just logo size */
+}
+
+.logo-scroll-container.closing .scroll-bar {
+  opacity: 0;
+  width: 0;
+}
+
+.logo-scroll-container.closing .header-logo {
+  filter: drop-shadow(0 0 0 transparent); /* Remove glow */
+}
+
+/* Closed State (Clean Logo) */
+.logo-scroll-container.closed .scroll-content {
+  width: auto;
+  background: transparent;
+  border: none;
+}
+
+.logo-scroll-container.closed .scroll-bar {
+  display: none;
+}
+
+.logo-scroll-container.closed .header-logo {
+  opacity: 1;
+  transform: scale(1);
+  /* Gentle breathe effect for the 'closed' state */
+  animation: breathe 3s infinite ease-in-out; 
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
