@@ -113,65 +113,74 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1000px; /* For 3D floating effect */
+  perspective: 1200px; /* Stronger perspective for depth */
 }
 
 .ai-pattern-container {
   display: flex;
-  gap: 40px; /* Space between 'A' and 'I' */
+  gap: 30px; 
   align-items: center;
-  transform: rotateX(5deg) rotateY(-10deg);
-  animation: float 6s ease-in-out infinite;
+  /* The Key 3D Slant Effect */
+  transform-style: preserve-3d;
+  transform: rotateY(-25deg) rotateX(10deg);
+  transition: transform 0.1s ease-out; /* Prepared for potential mouse tilt if needed */
+  animation: floating3D 6s ease-in-out infinite;
 }
 
-/* Common Image Style */
+/* Images */
 .collage-img {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   object-fit: cover;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  filter: grayscale(30%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Individual shadow to pop from the plane */
+  box-shadow: 10px 10px 30px rgba(0,0,0,0.6);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: brightness(0.8) contrast(1.2);
 }
 
+/* Hovering over specific images brings them "out" of the collage */
 .collage-img:hover {
-  transform: scale(1.15) translateZ(20px);
-  filter: grayscale(0%);
+  transform: translateZ(40px) scale(1.1); /* Pop out toward user */
+  filter: brightness(1.1);
   border-color: var(--primary);
-  box-shadow: 0 0 25px var(--primary-glow);
-  z-index: 10;
+  box-shadow: 0 0 30px var(--primary-glow);
+  z-index: 20;
 }
 
-/* Shape 'A' Structure */
 .shape-a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  transform-style: preserve-3d;
 }
 
-.row-1 { display: flex; justify-content: center; } /* 1 Image */
-.row-2 { display: flex; gap: 10px; }             /* 2 Images */
-.row-3 { display: flex; gap: 10px; }             /* 3 Images */
+.row-1, .row-2, .row-3 {
+  display: flex;
+  gap: 12px;
+  transform-style: preserve-3d;
+}
 
-/* Shape 'I' Structure */
 .shape-i {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  transform-style: preserve-3d;
+  /* Push 'I' slightly back or forward for depth variance if desired */
+  transform: translateZ(-20px); 
 }
 
-@keyframes float {
-  0%, 100% { transform: rotateX(5deg) rotateY(-10deg) translateY(0); }
-  50% { transform: rotateX(5deg) rotateY(-10deg) translateY(-20px); }
+@keyframes floating3D {
+  0%, 100% { transform: rotateY(-25deg) rotateX(10deg) translateY(0); }
+  50% { transform: rotateY(-25deg) rotateX(10deg) translateY(-20px); }
 }
 
 /* Responsive */
 @media (max-width: 992px) {
   .hero-title { font-size: 4rem; }
-  .collage-img { width: 60px; height: 60px; }
+  .collage-img { width: 70px; height: 70px; }
 }
 
 @media (max-width: 768px) {
@@ -179,13 +188,13 @@
   .text-section { padding-right: 0; margin-bottom: 50px; }
   .subtitle-wrapper { margin: 0 auto; text-align: left; }
   
+  /* Flatten for mobile readability, or keep slight tilt */
   .ai-pattern-container {
-    transform: none; /* Disable 3D rotate on mobile for clearer view */
-    gap: 20px;
+    transform: rotateY(-10deg); 
+    gap: 15px;
     animation: none;
   }
   
-  .shape-a, .shape-i { gap: 5px; }
-  .row-2, .row-3 { gap: 5px; }
-  .collage-img { width: 50px; height: 50px; }
+  .shape-a, .shape-i, .row-2, .row-3 { gap: 8px; }
+  .collage-img { width: 55px; height: 55px; }
 }
