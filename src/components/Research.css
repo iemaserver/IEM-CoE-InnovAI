@@ -2,11 +2,10 @@
 .research {
   padding: 120px 0;
   text-align: center;
-  background-color: #0b0c10; /* Slightly darker than primary for contrast */
+  background-color: #0b0c10; 
   position: relative;
 }
 
-/* Decorative Line Top */
 .research::before {
   content: '';
   position: absolute;
@@ -25,7 +24,7 @@
 
 .research > p {
   max-width: 700px;
-  margin: 0 auto 5rem; /* Increased spacing */
+  margin: 0 auto 5rem; 
   color: var(--text-secondary);
   font-size: 1.25rem;
   line-height: 1.8;
@@ -33,9 +32,10 @@
 
 .research-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* Enforce 2 columns on desktop for perfect 2x2 symmetry with 4 items */
+  grid-template-columns: repeat(2, 1fr);
   gap: 35px;
-  max-width: var(--max-width);
+  max-width: 900px; /* Constrain width to keep cards from getting too wide */
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -47,7 +47,7 @@
   padding: 40px 30px;
   position: relative;
   transition: all 0.4s ease;
-  overflow: visible; /* To allow glow to spill out */
+  overflow: visible; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,7 +85,7 @@
 }
 
 .research .card:hover h3 {
-  color: #c482ff; /* Light Violet text */
+  color: #c482ff; 
 }
 
 .research .card p {
@@ -108,7 +108,11 @@
   text-shadow: 0 0 10px var(--primary);
 }
 
+/* Responsive */
 @media (max-width: 768px) {
+  .research-cards {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
   .research h2 { font-size: 2.5rem; }
   .research > p { font-size: 1.1rem; margin-bottom: 3rem; }
 }

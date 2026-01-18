@@ -43,6 +43,7 @@
 
 .vision-cards {
   display: grid;
+  /* Vision usually has 3 items, so 3 columns is best. If 4, change to repeat(2, 1fr) */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 40px;
   justify-content: center;
