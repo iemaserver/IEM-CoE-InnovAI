@@ -39,31 +39,31 @@
   align-items: center;
   justify-content: center;
   height: 60px;
-  /* Fixed min-width to prevent shifting when effects vanish */
-  min-width: 180px; 
+  /* Fixed width to prevent shifting */
+  width: 180px; 
 }
 
-/* 1. Energy Handles (The Scroll Ends) */
+/* 1. Energy Handles */
 .scroll-handle {
-  width: 6px;
+  width: 4px;
   height: 0; /* Start hidden */
   background: #8a2be2;
-  box-shadow: 0 0 15px #8a2be2;
+  box-shadow: 0 0 10px #8a2be2;
   border-radius: 4px;
   position: relative;
   z-index: 10;
-  transition: height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+  transition: height 0.5s ease;
 }
 
 .core-beam {
   position: absolute;
   top: 10%; left: 50%; transform: translateX(-50%);
-  width: 2px; height: 80%;
+  width: 1px; height: 80%;
   background: #fff;
   opacity: 0.8;
 }
 
-/* 2. Hologram Screen (The Space Between) */
+/* 2. Hologram Screen */
 .hologram-screen {
   position: relative;
   height: 50px;
@@ -72,147 +72,161 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  /* Background only visible during generation */
   background: transparent;
   transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* 3. The Digital Grid (Background Effect) */
+/* 3. The Digital Grid */
 .digital-grid {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  background-image: linear-gradient(rgba(138, 43, 226, 0.2) 1px, transparent 1px);
-  background-size: 100% 5px;
+  background-image: 
+    linear-gradient(rgba(138, 43, 226, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(138, 43, 226, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
   opacity: 0;
   z-index: 1;
 }
 
-/* 4. The Scan Laser (The Generator) */
+/* 4. The High-Intensity Scan Laser */
 .scan-laser-line {
   position: absolute;
-  top: 0; left: 0;
-  width: 2px; height: 100%;
-  background: #00f0ff; /* Cyan Laser */
-  box-shadow: 0 0 15px #00f0ff;
-  z-index: 5;
+  top: 0; 
+  left: 0; /* Start position */
+  width: 3px; 
+  height: 100%;
+  background: #00f0ff; 
+  box-shadow: 
+    0 0 10px #00f0ff,
+    0 0 20px #ffffff; /* Hot white center */
+  z-index: 20;
   opacity: 0;
-  transform: translateX(-100px); /* Start off-screen */
+  /* We will animate 'left' property */
 }
 
-/* 5. The Logo (Being Constructed) */
+/* 5. The Logo Construct */
 .logo-construct {
   position: relative;
   z-index: 2;
-  width: 50px; 
-  height: 50px;
+  width: 100%; 
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .header-logo {
-  height: 45px;
-  width: auto;
-  /* Critical for "Generation" effect: Start masked */
+  /* Fix Vertical Size Issue */
+  height: 40px; /* Specific height matching the handle visual balance */
+  width: auto;  /* Maintain aspect ratio */
+  object-fit: contain; /* Prevent stretching */
+  
+  /* Start Masked */
   clip-path: inset(0 100% 0 0); 
-  filter: drop-shadow(0 0 0 transparent);
-  transition: filter 0.5s;
+  filter: grayscale(100%) brightness(2); /* Start as raw data (white/bright) */
+  will-change: clip-path, filter;
 }
 
 /* --- ANIMATION SEQUENCE STATES --- */
 
-/* STATE 1: OPENING (Handles Appear & Separate) */
+/* STATE 1: OPENING */
 .logo-scroll-container.opening .scroll-handle {
   height: 45px;
 }
 .logo-scroll-container.opening .hologram-screen {
-  width: 140px; /* Expand to full width immediately */
+  width: 100%; /* Fill container */
   border-top: 1px solid rgba(138, 43, 226, 0.3);
   border-bottom: 1px solid rgba(138, 43, 226, 0.3);
-  background: rgba(10, 5, 20, 0.4);
+  background: rgba(10, 5, 20, 0.6);
 }
 
-/* STATE 2: GENERATING (Laser Scans & Logo Appears) */
+/* STATE 2: GENERATING */
 .logo-scroll-container.generating .scroll-handle {
   height: 45px;
 }
 .logo-scroll-container.generating .hologram-screen {
-  width: 140px;
+  width: 100%;
   border-top: 1px solid rgba(138, 43, 226, 0.3);
   border-bottom: 1px solid rgba(138, 43, 226, 0.3);
-  background: rgba(10, 5, 20, 0.4);
+  background: rgba(10, 5, 20, 0.6);
 }
 .logo-scroll-container.generating .digital-grid {
   opacity: 1;
 }
+
+/* Sync Laser and Logo Reveal exactly */
 .logo-scroll-container.generating .scan-laser-line {
   opacity: 1;
-  /* Laser moves from Left to Right */
-  animation: laserScan 2s linear forwards;
+  animation: laserSweep 2s ease-in-out forwards;
 }
 .logo-scroll-container.generating .header-logo {
-  /* Logo reveals as laser moves */
-  animation: revealLogo 2s linear forwards;
-  filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.8)); /* Glow while generating */
+  animation: 
+    logoReveal 2s ease-in-out forwards, 
+    colorResolve 2.2s ease-out forwards; /* Transition from bright scan to normal color */
 }
 
-/* STATE 3: OPEN (Stabilized Hologram) */
+/* STATE 3: OPEN (Stable) */
 .logo-scroll-container.open .scroll-handle {
   height: 45px;
 }
 .logo-scroll-container.open .hologram-screen {
-  width: 140px;
-  border-color: rgba(138, 43, 226, 0.1);
+  width: 100%;
+  border-color: rgba(138, 43, 226, 0.05); /* Fade border */
   background: transparent;
 }
 .logo-scroll-container.open .header-logo {
-  clip-path: inset(0 0 0 0); /* Fully visible */
-  filter: drop-shadow(0 0 5px rgba(138, 43, 226, 0.5));
+  clip-path: inset(0 0 0 0);
+  filter: none;
+  height: 40px; /* Keep strict size */
 }
 
-/* STATE 4: CLOSING (Handles Fade Out - NO SHIFTING) */
+/* STATE 4: CLOSING (Handles Fade - Size Stays) */
 .logo-scroll-container.closing .scroll-handle {
   opacity: 0;
-  transform: scaleY(0); /* Shrink vertically */
+  height: 0;
 }
 .logo-scroll-container.closing .hologram-screen {
-  width: 140px; /* Keep width! Don't shrink! */
+  width: 100%;
   border-color: transparent;
 }
 .logo-scroll-container.closing .header-logo {
   clip-path: inset(0 0 0 0);
-  filter: drop-shadow(0 0 0 transparent); /* Remove glow */
-  transition: filter 1s ease;
+  filter: none;
 }
 
-/* STATE 5: CLOSED (Clean) */
+/* STATE 5: CLOSED */
 .logo-scroll-container.closed .scroll-handle {
   display: none;
 }
 .logo-scroll-container.closed .hologram-screen {
-  width: 140px; /* Stays stable */
+  width: 100%;
   border: none;
 }
 .logo-scroll-container.closed .header-logo {
   clip-path: inset(0 0 0 0);
   opacity: 1;
-  /* Gentle Pulse */
   animation: breathe 4s infinite ease-in-out;
 }
 
 /* --- KEYFRAMES --- */
 
-@keyframes laserScan {
-  0% { left: 0; }
+@keyframes laserSweep {
+  0% { left: 0%; }
   100% { left: 100%; }
 }
 
-@keyframes revealLogo {
+@keyframes logoReveal {
   0% { clip-path: inset(0 100% 0 0); }
   100% { clip-path: inset(0 0 0 0); }
 }
 
+@keyframes colorResolve {
+  0% { filter: grayscale(100%) brightness(3) drop-shadow(0 0 10px cyan); } /* Bright "Hot" Print */
+  50% { filter: grayscale(50%) brightness(1.5); }
+  100% { filter: grayscale(0%) brightness(1) drop-shadow(0 0 5px rgba(138, 43, 226, 0.5)); } /* Normal */
+}
+
 @keyframes breathe {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+  50% { transform: scale(1.05); filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.3)); }
 }
