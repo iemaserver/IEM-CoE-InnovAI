@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Loading.css";
-import logo from "../assets/Logo.png"; // Importing the actual logo
+import logo from "../assets/Logo.png";
 
 const Loading = () => {
-  const [isVisible, setIsVisible] = useState(true);
-
   return (
     <div className="loading-container">
       <div className="loader-content">
@@ -15,15 +13,20 @@ const Loading = () => {
           <div className="logo-ring ring-2"></div>
         </div>
 
-        {/* Text Animation */}
+        {/* Enhanced Text Section */}
         <div className="loading-text-wrapper">
           <h1 className="brand-name">
-            innov<span className="highlight">AI</span>
+            Innov<span className="highlight">AI</span>
           </h1>
-          <div className="loading-dots">
-            <span></span>
-            <span></span>
-            <span></span>
+          <h2 className="brand-subtitle">CENTER OF EXCELLENCE</h2>
+          
+          <div className="system-status">
+            <span className="status-text">SYSTEM INITIALIZING</span>
+            <div className="loading-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
         </div>
       </div>
