@@ -12,10 +12,10 @@ function Header() {
   };
 
   useEffect(() => {
-    // Sequence Timeline
-    const openTimer = setTimeout(() => setScrollState("open"), 1000); 
-    const closeTimer = setTimeout(() => setScrollState("closing"), 5000); 
-    const closedTimer = setTimeout(() => setScrollState("closed"), 6000); 
+    // Advanced Sequence Timeline
+    const openTimer = setTimeout(() => setScrollState("open"), 1200); // Allow time for expansion
+    const closeTimer = setTimeout(() => setScrollState("closing"), 6000); // Longer display time
+    const closedTimer = setTimeout(() => setScrollState("closed"), 7000); // Final state
 
     return () => {
       clearTimeout(openTimer);
@@ -28,23 +28,39 @@ function Header() {
     <header className="header">
       <div className="container">
         
-        {/* Navigation - Now on the LEFT */}
         <nav className="nav">
           <MenuToggle toggleMenu={toggleMenu} />
         </nav>
 
-        {/* Animated Logo Scroll Container - Now on the RIGHT */}
+        {/* ULTRA-ENHANCED LOGO SCROLL */}
         <div className={`logo-scroll-container ${scrollState}`}>
-          <div className="scroll-bar left"></div>
-          <div className="scroll-content">
-            <div className="hologram-scan-line"></div>
-            <div className="shine-effect"></div>
-            {/* Using a filter-based approach to simulate SVG/Analysis look */}
-            <div className="logo-wrapper-analysis">
-               <img src={Logo1} alt="IEM Logo" className="header-logo" />
+          
+          {/* Left Energy Core */}
+          <div className="scroll-handle left">
+            <div className="core-glow"></div>
+          </div>
+
+          {/* Holographic Projection Screen */}
+          <div className="hologram-screen">
+            <div className="digital-grid"></div>
+            <div className="scan-beam"></div>
+            
+            {/* Multi-Layered Glitch Logo */}
+            <div className="logo-construct">
+              {/* Cyan Channel */}
+              <img src={Logo1} alt="" className="logo-layer glitch-cyan" />
+              {/* Violet Channel */}
+              <img src={Logo1} alt="" className="logo-layer glitch-violet" />
+              {/* Main Logo */}
+              <img src={Logo1} alt="IEM Logo" className="logo-layer base" />
             </div>
           </div>
-          <div className="scroll-bar right"></div>
+
+          {/* Right Energy Core */}
+          <div className="scroll-handle right">
+            <div className="core-glow"></div>
+          </div>
+
         </div>
 
       </div>
