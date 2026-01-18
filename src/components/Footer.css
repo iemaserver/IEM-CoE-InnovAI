@@ -24,8 +24,20 @@
 
 .container1 p {
   font-size: 0.9rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   margin-bottom: 15px;
+}
+
+.designer-link {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+.designer-link:hover {
+  color: var(--secondary);
+  text-shadow: 0 0 10px var(--primary-glow);
 }
 
 .social-links {

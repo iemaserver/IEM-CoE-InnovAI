@@ -13,7 +13,7 @@ function Footer() {
         <div className="column-left">
           <ContactUs1 />
           <div className="container1">
-            <p>&copy; 2024 All rights reserved | This Website is made by Sumit Kumar Das and team </p>
+            <p>&copy; 2024 All rights reserved | Website Designed by <a href="https://www.linkedin.com/in/sumitkumardas-ai/" target="_blank" rel="noopener noreferrer" className="designer-link">Sumit Kumar Das</a></p>
             <ul className="social-links">
               <li>
                 <a href="#" target="_blank" rel="noopener noreferrer">
