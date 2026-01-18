@@ -117,13 +117,13 @@
 
 .header-logo {
   /* Fix Vertical Size Issue */
-  height: 40px; /* Specific height matching the handle visual balance */
-  width: auto;  /* Maintain aspect ratio */
-  object-fit: contain; /* Prevent stretching */
+  height: 40px; 
+  width: auto;  
+  object-fit: contain; 
   
   /* Start Masked */
   clip-path: inset(0 100% 0 0); 
-  filter: grayscale(100%) brightness(2); /* Start as raw data (white/bright) */
+  filter: grayscale(100%) brightness(2); 
   will-change: clip-path, filter;
 }
 
@@ -134,7 +134,7 @@
   height: 45px;
 }
 .logo-scroll-container.opening .hologram-screen {
-  width: 100%; /* Fill container */
+  width: 100%; 
   border-top: 1px solid rgba(138, 43, 226, 0.3);
   border-bottom: 1px solid rgba(138, 43, 226, 0.3);
   background: rgba(10, 5, 20, 0.6);
@@ -162,7 +162,7 @@
 .logo-scroll-container.generating .header-logo {
   animation: 
     logoReveal 2s ease-in-out forwards, 
-    colorResolve 2.2s ease-out forwards; /* Transition from bright scan to normal color */
+    colorResolve 2.2s ease-out forwards; 
 }
 
 /* STATE 3: OPEN (Stable) */
@@ -171,16 +171,16 @@
 }
 .logo-scroll-container.open .hologram-screen {
   width: 100%;
-  border-color: rgba(138, 43, 226, 0.05); /* Fade border */
+  border-color: rgba(138, 43, 226, 0.05); 
   background: transparent;
 }
 .logo-scroll-container.open .header-logo {
   clip-path: inset(0 0 0 0);
   filter: none;
-  height: 40px; /* Keep strict size */
+  height: 40px; 
 }
 
-/* STATE 4: CLOSING (Handles Fade - Size Stays) */
+/* STATE 4: CLOSING (Flash & Fade Handles) */
 .logo-scroll-container.closing .scroll-handle {
   opacity: 0;
   height: 0;
@@ -191,7 +191,8 @@
 }
 .logo-scroll-container.closing .header-logo {
   clip-path: inset(0 0 0 0);
-  filter: none;
+  /* The Final Flash Animation */
+  animation: logoFinalFlash 1.2s ease-out forwards;
 }
 
 /* STATE 5: CLOSED */
@@ -221,9 +222,16 @@
 }
 
 @keyframes colorResolve {
-  0% { filter: grayscale(100%) brightness(3) drop-shadow(0 0 10px cyan); } /* Bright "Hot" Print */
+  0% { filter: grayscale(100%) brightness(3) drop-shadow(0 0 10px cyan); } 
   50% { filter: grayscale(50%) brightness(1.5); }
-  100% { filter: grayscale(0%) brightness(1) drop-shadow(0 0 5px rgba(138, 43, 226, 0.5)); } /* Normal */
+  100% { filter: grayscale(0%) brightness(1) drop-shadow(0 0 5px rgba(138, 43, 226, 0.5)); } 
+}
+
+/* The Completion Flash */
+@keyframes logoFinalFlash {
+  0% { filter: drop-shadow(0 0 5px rgba(138, 43, 226, 0.5)); transform: scale(1); }
+  30% { filter: drop-shadow(0 0 25px rgba(138, 43, 226, 1)) brightness(1.2); transform: scale(1.08); } /* Peak */
+  100% { filter: drop-shadow(0 0 0 transparent) brightness(1); transform: scale(1); } /* Settle */
 }
 
 @keyframes breathe {
