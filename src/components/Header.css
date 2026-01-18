@@ -18,7 +18,7 @@
 
 .header .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Keeps them apart */
   align-items: center;
   width: 90%;
   max-width: var(--max-width);
@@ -27,6 +27,7 @@
 .nav {
   display: flex;
   align-items: center;
+  /* Nav is now first in DOM, so it sits on the left naturally */
 }
 
 /* --- LOGO SCROLL ANIMATION --- */
@@ -47,36 +48,45 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(10, 10, 20, 0.6); /* Darker Blue/Violet tint */
   border-radius: 4px;
   transition: width 1s cubic-bezier(0.23, 1, 0.32, 1), background 1s ease;
+}
+
+.logo-wrapper-analysis {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header-logo {
   height: 50px;
   width: auto;
-  opacity: 0; /* Start invisible */
+  opacity: 0; 
   transform: scale(0.8);
   transition: opacity 0.5s ease, transform 0.5s ease;
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  /* Initial Holographic Look */
+  filter: drop-shadow(0 0 5px rgba(138, 43, 226, 0.8)) hue-rotate(15deg); 
 }
 
-/* The Scroll Bars (Cylinders) */
+/* The Scroll Bars (Cylinders) - Now Violet/Cyan */
 .scroll-bar {
   width: 6px;
   height: 40px;
-  background: linear-gradient(to bottom, #ffd700, #ffaa00, #ffd700); /* Golden Scroll */
+  /* Violet to Cyan Gradient */
+  background: linear-gradient(to bottom, #8a2be2, #00f0ff, #8a2be2); 
   border-radius: 4px;
-  box-shadow: 0 0 10px #ffaa00;
+  box-shadow: 0 0 10px #8a2be2;
   transition: all 1s ease;
   z-index: 2;
 }
 
 /* Opening State */
 .logo-scroll-container.opening .scroll-content {
-  width: 180px; /* Expand width */
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 215, 0, 0.3); /* Golden border */
+  width: 180px; 
+  background: rgba(20, 0, 40, 0.5);
+  border: 1px solid rgba(138, 43, 226, 0.4); /* Violet border */
 }
 
 .logo-scroll-container.opening .header-logo,
@@ -86,7 +96,7 @@
 }
 
 .logo-scroll-container.opening .scroll-bar {
-  height: 55px; /* Grow slightly */
+  height: 55px; 
 }
 
 /* Fully Open State (Shine time) */
@@ -94,7 +104,34 @@
   width: 180px;
 }
 
-/* Shine Effect */
+/* --- Holographic Analysis Effects --- */
+
+/* 1. The Scanning Line */
+.hologram-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #00f0ff; /* Cyan Scanline */
+  box-shadow: 0 0 10px #00f0ff;
+  z-index: 4;
+  opacity: 0;
+}
+
+.logo-scroll-container.open .hologram-scan-line {
+  animation: scanDown 2s ease-in-out infinite;
+  opacity: 1;
+}
+
+@keyframes scanDown {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* 2. The Shine Effect */
 .shine-effect {
   position: absolute;
   top: 0;
@@ -104,7 +141,7 @@
   background: linear-gradient(
     to right,
     transparent,
-    rgba(255, 255, 255, 0.8),
+    rgba(0, 240, 255, 0.5), /* Cyan Shine */
     transparent
   );
   transform: skewX(-25deg);
@@ -112,7 +149,7 @@
 }
 
 .logo-scroll-container.open .shine-effect {
-  animation: shineScroll 2s infinite;
+  animation: shineScroll 2.5s infinite;
 }
 
 @keyframes shineScroll {
@@ -120,11 +157,22 @@
   100% { left: 200%; }
 }
 
+/* 3. Logo Glitch/Analysis Animation */
+.logo-scroll-container.open .header-logo {
+  animation: logoAnalysis 3s infinite;
+}
+
+@keyframes logoAnalysis {
+  0% { filter: drop-shadow(0 0 5px rgba(138, 43, 226, 0.8)); }
+  50% { filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.8)) brightness(1.2); }
+  100% { filter: drop-shadow(0 0 5px rgba(138, 43, 226, 0.8)); }
+}
+
 /* Closing State (Retract Scroll Bars) */
 .logo-scroll-container.closing .scroll-content {
   background: transparent;
   border-color: transparent;
-  width: 60px; /* Shrink to just logo size */
+  width: 60px; 
 }
 
 .logo-scroll-container.closing .scroll-bar {
@@ -132,8 +180,9 @@
   width: 0;
 }
 
-.logo-scroll-container.closing .header-logo {
-  filter: drop-shadow(0 0 0 transparent); /* Remove glow */
+.logo-scroll-container.closing .hologram-scan-line,
+.logo-scroll-container.closing .shine-effect {
+  display: none;
 }
 
 /* Closed State (Clean Logo) */
@@ -150,7 +199,8 @@
 .logo-scroll-container.closed .header-logo {
   opacity: 1;
   transform: scale(1);
-  /* Gentle breathe effect for the 'closed' state */
+  filter: drop-shadow(0 0 0 transparent); /* Clean look */
+  /* Gentle breathe effect */
   animation: breathe 3s infinite ease-in-out; 
 }
 

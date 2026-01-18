@@ -13,9 +13,9 @@ function Header() {
 
   useEffect(() => {
     // Sequence Timeline
-    const openTimer = setTimeout(() => setScrollState("open"), 1000); // Fully opened after 1s
-    const closeTimer = setTimeout(() => setScrollState("closing"), 5000); // Start closing after 5s
-    const closedTimer = setTimeout(() => setScrollState("closed"), 6000); // Fully closed state (logo remains, borders gone)
+    const openTimer = setTimeout(() => setScrollState("open"), 1000); 
+    const closeTimer = setTimeout(() => setScrollState("closing"), 5000); 
+    const closedTimer = setTimeout(() => setScrollState("closed"), 6000); 
 
     return () => {
       clearTimeout(openTimer);
@@ -28,19 +28,25 @@ function Header() {
     <header className="header">
       <div className="container">
         
-        {/* Animated Logo Scroll Container */}
+        {/* Navigation - Now on the LEFT */}
+        <nav className="nav">
+          <MenuToggle toggleMenu={toggleMenu} />
+        </nav>
+
+        {/* Animated Logo Scroll Container - Now on the RIGHT */}
         <div className={`logo-scroll-container ${scrollState}`}>
           <div className="scroll-bar left"></div>
           <div className="scroll-content">
+            <div className="hologram-scan-line"></div>
             <div className="shine-effect"></div>
-            <img src={Logo1} alt="IEM Logo" className="header-logo" />
+            {/* Using a filter-based approach to simulate SVG/Analysis look */}
+            <div className="logo-wrapper-analysis">
+               <img src={Logo1} alt="IEM Logo" className="header-logo" />
+            </div>
           </div>
           <div className="scroll-bar right"></div>
         </div>
 
-        <nav className="nav">
-          <MenuToggle toggleMenu={toggleMenu} />
-        </nav>
       </div>
     </header>
   );
