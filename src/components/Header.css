@@ -241,16 +241,41 @@
 }
 
 /* --- MOBILE RESPONSIVENESS --- */
+
 @media (max-width: 768px) {
+
   .header .container {
-    justify-content: center; /* Center main content */
+
+    justify-content: center; /* Center the Logo container */
+
+    position: relative;
+
   }
 
+
+
   .nav {
-    position: absolute; /* Detach from flow */
-    left: 0;
+
+    position: absolute;
+
+    left: 0; /* Stick to left edge of container */
+
     top: 50%;
+
     transform: translateY(-50%);
+
     z-index: 20;
+
   }
+
+  
+
+  /* Ensure logo container doesn't get pushed */
+
+  .logo-scroll-container {
+
+    margin: 0 auto;
+
+  }
+
 }

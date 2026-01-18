@@ -185,9 +185,18 @@
 
 @media (max-width: 768px) {
   .hero-content { flex-direction: column; text-align: center; }
-  .text-section { padding-right: 0; margin-bottom: 50px; }
+  
+  /* Use Flexbox to strictly center content */
+  .text-section { 
+    padding-right: 0; 
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .subtitle-wrapper { margin: 0 auto; text-align: left; }
-  .logo-wrapper { margin-left: auto; margin-right: auto; }
+  .logo-wrapper { margin-bottom: 20px; } /* Remove auto margins, let align-items handle it */
   
   /* Flatten for mobile readability, or keep slight tilt */
   .ai-pattern-container {
