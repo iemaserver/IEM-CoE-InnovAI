@@ -1,45 +1,73 @@
 import React, { useEffect, useState } from "react";
 import "./Loading.css";
-import Load1 from "../assets/Load1.mp4"; // Video for Desktop
-import Load2 from "../assets/Load2.mp4"; // Video for Mobile
 
-function Loading() {
-  const [isVisible, setIsVisible] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+const Loading = () => {
+  const [progress, setProgress] = useState(0);
+  const [text, setText] = useState("INITIALIZING CORE SYSTEMS...");
 
   useEffect(() => {
-    // Detect if the device is mobile using both screen width and user agent
-    const checkDevice = () => {
-      const isSmallScreen = window.innerWidth <= 768; // Breakpoint for mobile
-      const isUserAgentMobile =
-        /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop|Mobile/i.test(
-          navigator.userAgent
-        );
-      setIsMobile(isSmallScreen || isUserAgentMobile); // If either condition matches
-    };
+    const texts = [
+      "LOADING NEURAL NETWORKS...",
+      "CONNECTING TO DATABASE...",
+      "OPTIMIZING ASSETS...",
+      "SYSTEM READY"
+    ];
+    let step = 0;
 
-    checkDevice(); // Initial check
-    window.addEventListener("resize", checkDevice); // Update on resize
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          return 100;
+        }
+        
+        // Dynamic speed
+        const diff = Math.random() * 10;
+        const newProgress = Math.min(prev + diff, 100);
+        
+        if (newProgress > 25 && step === 0) { setText(texts[0]); step++; }
+        if (newProgress > 50 && step === 1) { setText(texts[1]); step++; }
+        if (newProgress > 75 && step === 2) { setText(texts[2]); step++; }
+        if (newProgress === 100) setText(texts[3]);
 
-    // Hide loading screen after 3 seconds
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-    }, 3000);
+        return newProgress;
+      });
+    }, 150);
 
-    return () => {
-      window.removeEventListener("resize", checkDevice);
-      clearTimeout(timer);
-    };
+    return () => clearInterval(interval);
   }, []);
 
-  return isVisible ? (
-    <div className="loading-screen">
-      <video autoPlay muted loop className="loading-video">
-        <source src={isMobile ? Load2 : Load1} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+  return (
+    <div className="loading-container">
+      <div className="loader-content">
+        <div className="glitch-wrapper">
+          <h1 className="brand-name glitch" data-text="innovAI">
+            innov<span className="highlight">AI</span>
+          </h1>
+        </div>
+        
+        <div className="terminal-loader">
+          <div className="terminal-header">
+            <span className="terminal-button red"></span>
+            <span className="terminal-button yellow"></span>
+            <span className="terminal-button green"></span>
+          </div>
+          <div className="terminal-window">
+            <p className="code-text">
+              <span className="prompt">&gt;</span> {text}
+            </p>
+            <div className="progress-bar-container">
+              <div 
+                className="progress-fill" 
+                style={{ width: `${progress}%` }}
+              ></div>
+            </div>
+            <p className="percentage">{Math.floor(progress)}%</p>
+          </div>
+        </div>
+      </div>
     </div>
-  ) : null;
-}
+  );
+};
 
 export default Loading;

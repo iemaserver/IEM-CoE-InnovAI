@@ -1,63 +1,80 @@
 /* Research.css */
 .research {
-  padding: 40px 0;
+  padding: 80px 0;
   text-align: center;
+  background-color: var(--bg-primary);
+  position: relative;
 }
 
 .research h2 {
   font-size: 3rem;
   margin-bottom: 20px;
+  color: var(--text-primary);
 }
 
-.research p {
+.research > p {
   max-width: 800px;
-  margin: 0 auto 30px;
+  margin: 0 auto 50px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
 }
 
 .research-cards {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Align items to the top */
   flex-wrap: wrap;
-  position: relative; /* To position pseudo-elements */
+  gap: 30px;
+  position: relative;
 }
 
-.research .card {
-  background-color: #cff5ff;
-  border-radius: 10px; /* Increased border-radius for a softer look */
-  padding: 20px;
-  margin: 20px; /* Increased margin for spacing */
-  flex: 1 1 300px; /* Flex basis for larger card sizes */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* More prominent shadow */
-  position: relative; /* Allows positioning for animations */
-  transition: transform 0.3s; /* Smooth scaling on hover */
-}
-
-/* Card image styling */
-.card-image {
-  width: 100px; /* Set a fixed width for images */
-  height: auto; /* Maintain aspect ratio */
-  margin-bottom: 10px; /* Space between image and text */
-}
-
-/* Card hover effect */
-.research .card:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-}
-
-/* Line effect */
+/* Timeline Line */
 .research-cards::before {
   content: '';
   position: absolute;
-  top: 50%; /* Center the line vertically */
-  left: 50%; /* Center the line horizontally */
-  width: 2px; /* Width of the line */
-  height: 100%; /* Height of the line */
-  background-color: #cccccc; /* Line color */
-  transform: translate(-50%, -50%); /* Center the line */
-  z-index: 0; /* Behind the cards */
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  z-index: 0;
+  opacity: 0.3;
 }
 
 .research .card {
-  z-index: 1; /* Bring cards above the line */
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  flex: 1 1 300px;
+  z-index: 1;
+  transition: var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.research .card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
+}
+
+.card-image {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+}
+
+.research .card h3 {
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.research .card p {
+  color: var(--text-muted);
+}
+
+@media (max-width: 768px) {
+  .research-cards::before { display: none; } /* Hide line on mobile */
 }

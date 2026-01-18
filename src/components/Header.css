@@ -1,44 +1,35 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.8); /* Transparent background with slight opacity */
-  padding: 20px;
-  background: linear-gradient(to right, #1a2a6c, #a10086, #fd2d98);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Darker shadow for a more defined effect */
-  border-radius: 10px; /* Smooth rounding of corners */
-  transition: all 0.3s ease-in-out;
-  position: relative;
-  z-index: 10; /* Make sure the header stays above other elements */
-}
-
-.header::before {
-  content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1); /* Soft, wide shadow for an elegant look */
-  z-index: -1; /* Keep shadow behind the header */
-  border-radius: 10px;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  background: rgba(5, 5, 5, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.header:hover {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Darker shadow on hover */
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: var(--max-width);
 }
 
 .logo img {
-  position: absolute;
-  top: 10px; /* Adjust top padding */
-  left: 20px; /* Adjust left padding */
-  height: 60px; /* Smaller size */
-  width: 60px; /* Ensure a consistent size */
-  border-radius: 15px; /* Curved corners */
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth hover animation */
+  height: 40px;
+  width: auto;
+  filter: brightness(1.2);
 }
 
-.logo img:hover {
-  transform: scale(1.05);
-  opacity: 0.9; /* Slight fade on hover */
+.nav {
+  display: flex;
+  align-items: center;
 }

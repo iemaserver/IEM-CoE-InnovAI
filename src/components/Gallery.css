@@ -1,70 +1,89 @@
 /* Gallery.css */
-
 .gallery {
-  background: linear-gradient(to right, #8a2be2, #87ceeb); /* Violet to Sky Blue */
-  padding: 40px 0;
+  background-color: var(--bg-primary);
+  padding: 100px 0;
   overflow: hidden;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
+  position: relative;
 }
 
 .gallery h2 {
-  color: #ffffff; /* White text for contrast */
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  font-family: "Arial", sans-serif;
+  color: var(--text-primary);
+  font-size: 3rem;
+  margin-bottom: 60px;
+  text-align: center;
+  letter-spacing: -1px;
+}
+
+.gallery-wrapper {
+  position: relative;
+  width: 100%;
+  /* Fading edges */
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  padding: 20px 0;
 }
 
 .gallery-list {
   display: flex;
-  animation: scrollGallery 40s linear infinite; /* Slower scroll speed */
-  width: calc(240px * 8); /* Adjusted width for 8 images */
+  width: max-content;
+  gap: 30px;
+  /* Smooth infinite scroll */
+  animation: scrollGallery 60s linear infinite;
+}
+
+.gallery-list:hover {
+  animation-play-state: paused;
 }
 
 .gallery-item {
-  min-width: 240px; /* Consistent width for images */
-  height: 160px; /* Consistent height for images */
-  margin: 10px;
-  transition: transform 0.5s ease; /* Smooth grow effect */
+  min-width: 320px;
+  height: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Glassmorphism Border */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .gallery-photo {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Uniform size without distortion */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow for depth */
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  filter: grayscale(100%);
 }
 
-/* Grow on Hover */
+/* Hover Effects */
 .gallery-item:hover {
-  transform: scale(1.1); /* Grow effect */
+  transform: scale(1.1) translateY(-10px);
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border-color: var(--primary);
 }
 
-/* Slower Scrolling Animation */
-@keyframes scrollGallery {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%); /* Scrolls left to hide images */
-  }
+.gallery-item:hover .gallery-photo {
+  transform: scale(1.1);
+  filter: grayscale(0%);
 }
-@keyframes glowEffect {
-  0% {
-    text-shadow: 
-      0 0 10px rgba(123, 104, 238, 0.8), 
-      0 0 15px rgba(173, 216, 230, 0.7), 
-      0 0 20px rgba(75, 0, 130, 0.9);
-  }
-  100% {
-    text-shadow: 
-      0 0 15px rgba(123, 104, 238, 1), 
-      0 0 20px rgba(173, 216, 230, 0.9), 
-      0 0 25px rgba(75, 0, 130, 1);
-  }
+
+/* Add a glowing overlay on hover */
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to top, rgba(0, 240, 255, 0.4), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
+}
+
+@keyframes scrollGallery {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* Ensure this matches the duplicated content width */
 }

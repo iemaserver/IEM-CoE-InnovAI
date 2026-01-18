@@ -1,153 +1,73 @@
 /* Vision.css */
-.wrapper {
-  background-size: cover; /* Ensure the background fits the sections */
-  background-position: center; /* Center the background image */
-  background-repeat: no-repeat; /* Prevent repetition */
-  transition: background-image 1s ease-in-out; /* Smooth transition for background changes */
-  min-height: 1200px; /* Adjust the height to cover both sections */
-}
-
 .vision {
-  padding: 60px 0; /* Increased padding for elongation */
+  padding: 100px 0;
   text-align: center;
-  min-height: 600px; /* Elongate section vertically */
+  background-color: var(--bg-primary);
+  position: relative;
 }
 
 .vision h2 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   margin-bottom: 20px;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.vision .vision-cards {
+.vision > p {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin: 0 auto 60px;
+}
+
+.vision-cards {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping of cards */
-  justify-content: center; /* Center cards in the flex container */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
 }
 
 .card {
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px;
-  width: 250px;
+  background-color: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  padding: 40px 20px;
+  width: 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  transition: transform 0.3s;
-}
-
-.card:nth-child(odd) {
-  margin-top: 30px;
-}
-
-.card:nth-child(even) {
-  margin-bottom: 30px;
+  transition: var(--transition-normal);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-10px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 40px var(--primary-glow);
 }
 
 .card-image {
-  width: 100px;
-  height: auto;
-  margin-bottom: 10px;
-}
-/* Vision.css */
-
-/* Make sure the "Our Vision" has font size 3rem and the left to right glowing effect */
-h2 {
-  font-size: 3rem; /* "Our Vision" font size */
-  text-align: center;
+  width: 80px;
+  height: 80px;
   margin-bottom: 20px;
-  background-image: linear-gradient(to right, violet, darkblue, orange, green);
-  background-size: 200% 100%; /* Make the gradient larger than the text */
-  background-clip: text;
-  color: transparent;
-  -webkit-background-clip: text; /* Safari support */
-  animation: glowingText 8s infinite; /* Slowed down total duration */
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
 }
 
-/* Make sure the "To leverage..." text has font size 2rem and glowing effect */
-p {
-  font-size: 2rem; /* "To leverage..." font size */
-  text-align: center;
-  background-image: linear-gradient(to right, violet, darkblue, orange, green);
-  background-size: 200% 100%; /* Make the gradient larger than the text */
-  background-clip: text;
-  color: transparent;
-  -webkit-background-clip: text; /* Safari support */
-  animation: glowingText 8s infinite; /* Slowed down total duration */
-}
-
-/* Apply a glowing effect to the text inside the cards */
-.card h3, .card p {
-  text-align: center;
-  font-size: 1.2rem; /* Text inside the cards */
-  background-image: linear-gradient(to right, violet, darkblue, orange, green);
-  background-size: 200% 100%; /* Make the gradient larger than the text */
-  background-clip: text;
-  color: transparent;
-  -webkit-background-clip: text; /* Safari support */
-  animation: glowingText 8s infinite; /* Slowed down total duration */
-}
-
-/* Keyframes for the left to right color transition effect */
-@keyframes glowingText {
-  0% {
-    background-position: -200% 0%; /* Start the gradient off-screen on the left */
-  }
-  25% {
-    background-position: 200% 0%; /* Fast movement to the right */
-  }
-  50% {
-    background-position: 200% 0%; /* Slow down */
-  }
-  75% {
-    background-position: 200% 0%; /* Continue slow */
-  }
-  100% {
-    background-position: -200% 0%; /* Return to the left */
-  }
-}
-
-/* Cards' basic styles */
-.vision .vision-cards {
-  display: flex;
-  flex-wrap: wrap; /* Allow wrapping of cards */
-  justify-content: center; /* Center cards in the flex container */
-}
-
-.card {
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px;
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  transition: transform 0.3s;
-}
-
-.card:nth-child(odd) {
-  margin-top: 30px;
-}
-
-.card:nth-child(even) {
-  margin-bottom: 30px;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card-image {
-  width: 100px;
-  height: auto;
+.card h3 {
+  color: var(--text-primary);
+  font-size: 1.25rem;
   margin-bottom: 10px;
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .vision h2 { font-size: 2.5rem; }
+  .vision > p { font-size: 1.2rem; }
 }

@@ -1,52 +1,61 @@
 /* Partnerships.css */
 .partnerships {
-  background-color: #f7f9fc; /* Light background for the section */
-  padding: 40px 20px;
+  background-color: var(--bg-secondary);
+  padding: 80px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-h2 {
+.partnerships h2 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  font-size: 3rem;
+  color: var(--text-primary);
 }
 
-h3 {
-  margin: 30px 0 15px;
+.partnerships h3 {
+  margin: 40px 0 20px;
   text-align: center;
+  font-size: 1.8rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .partnership-categories,
 .engagement-categories,
 .student-categories {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  gap: 20px;
+  margin-bottom: 40px;
 }
 
 .category {
-  background-color: #b8e1f1; /* Box color */
-  border-radius: 10px;
-  padding: 20px;
-  margin: 10px;
-  flex: 1 1 250px; /* Responsive size */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  background: linear-gradient(145deg, var(--bg-card), #16171d);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  flex: 1 1 280px;
+  max-width: 350px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .category:hover {
-  transform: translateY(-5px); /* Hover effect */
+  transform: translateY(-5px);
+  border-color: var(--secondary);
+  box-shadow: 0 10px 30px rgba(112, 0, 255, 0.15);
 }
 
 .category h4 {
-  margin-bottom: 10px; /* Margin below the heading */
+  margin-bottom: 15px;
+  color: var(--text-primary);
+  font-size: 1.3rem;
 }
 
 .category p {
-  margin: 0; /* Reset margin for paragraphs */
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0;
 }
-

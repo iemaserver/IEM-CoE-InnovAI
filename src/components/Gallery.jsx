@@ -25,48 +25,46 @@ const galleryData = [
 ];
 
 function Gallery() {
-  // ScrollReveal animation
   useEffect(() => {
     ScrollReveal().reveal(".gallery-item", {
-      duration: 1500,
+      duration: 1000,
       scale: 0.95,
       opacity: 0,
       easing: "ease-in-out",
-      reset: false,
+      reset: false, 
       origin: "bottom",
       distance: "20px",
+      interval: 100 
     });
   }, []);
 
   return (
     <section className="gallery" id="gallery">
       <div className="container">
-        <h2
-          style={{
-            textAlign: "center",
-            marginBottom: "20px",
-            fontSize: "2.5em",
-            fontWeight: "bold",
-            color: "#fff",
-            textShadow: `
-              0 0 10px rgba(123, 104, 238, 0.8), 
-              0 0 15px rgba(173, 216, 230, 0.7), 
-              0 0 20px rgba(75, 0, 130, 0.9)`,
-            animation: "glowEffect 2s infinite alternate",
-          }}
-        >
-          Gallery
-        </h2>
-        <div className="gallery-list">
-          {galleryData.map((item) => (
-            <div className="gallery-item" key={item.id}>
-              <img
-                src={item.img}
-                alt={`Gallery ${item.id}`}
-                className="gallery-photo"
-              />
-            </div>
-          ))}
+        <h2>Gallery</h2>
+        <div className="gallery-wrapper">
+          <div className="gallery-list">
+            {/* Original Set */}
+            {galleryData.map((item) => (
+              <div className="gallery-item" key={`original-${item.id}`}>
+                <img
+                  src={item.img}
+                  alt={`Gallery ${item.id}`}
+                  className="gallery-photo"
+                />
+              </div>
+            ))}
+            {/* Duplicated Set for Infinite Scroll */}
+            {galleryData.map((item) => (
+              <div className="gallery-item" key={`duplicate-${item.id}`}>
+                <img
+                  src={item.img}
+                  alt={`Gallery ${item.id}`}
+                  className="gallery-photo"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

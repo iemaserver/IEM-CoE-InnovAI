@@ -1,47 +1,42 @@
-/* Remove the default cursor for the entire body */
-body, button, a, input, textarea {
-  cursor: none !important;
-}
-
-/* Custom cursor base styles */
-.custom-cursor {
+.cursor-dot,
+.cursor-ring {
   position: fixed;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, rgba(0, 212, 255, 1), rgba(21, 0, 255, 1));
-  border-radius: 50%;
-  pointer-events: none; /* Prevent interference with clicks */
+  top: 0;
+  left: 0;
   transform: translate(-50%, -50%);
-  z-index: 9999;
-  mix-blend-mode: difference; /* Interactive look on colored backgrounds */
-  transition: transform 0.1s ease-out, box-shadow 0.2s ease;
-  animation: cursorPulse 2s infinite;
-  box-shadow: 0 0 20px 5px rgba(232, 7, 123, 0.8);
+  pointer-events: none;
+  z-index: 10000;
+  border-radius: 50%;
 }
 
-/* Pulse animation for a dynamic AI-like effect */
-@keyframes cursorPulse {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
-    box-shadow: 0 0 20px 5px rgba(232, 7, 123, 0.8);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.2);
-    box-shadow: 0 0 30px 10px rgba(0, 229, 255, 0.8);
-  }
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary);
+  box-shadow: 0 0 10px var(--primary);
 }
 
-/* Hover effect when interacting with clickable elements */
-.custom-cursor.hovered {
+.cursor-ring {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+  mix-blend-mode: difference; /* Cool effect over text */
+}
+
+/* Hover State */
+.cursor-ring.hovered {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--primary);
+  mix-blend-mode: normal;
+}
+
+/* Click State */
+.cursor-ring.expand {
   width: 30px;
   height: 30px;
-  background: radial-gradient(circle, rgba(232, 7, 123, 1), rgba(0, 229, 255, 0.8));
-  transform: translate(-50%, -50%) scale(1.5);
-  box-shadow: 0 0 40px 15px rgba(0, 229, 255, 0.8);
-  animation: none; /* Stop pulse animation on hover */
-}
-
-/* Additional hover scale for links/buttons */
-a:hover, button:hover {
-  color: rgba(0, 229, 255, 0.8); /* Optional color change for links */
+  background-color: var(--primary-glow);
+  border-color: transparent;
 }
