@@ -2,9 +2,14 @@ import React, { useEffect } from "react";
 import "./ImpetusPage.css";
 import Header from "./Header";
 import Footer from "./Footer";
-import g1 from "../assets/new_g1.jpg"; // Using new images as placeholders for event pics
+import g1 from "../assets/new_g1.jpg"; 
 import g2 from "../assets/new_g2.jpg"; 
-import logo from "../assets/Logo.png"; // Placeholder for GDG Logo if needed
+import g3 from "../assets/new_g3.png"; // New Screenshot 1
+import g4 from "../assets/new_g4.png"; // New Screenshot 2
+
+// Faculty Images
+import teacherMoutushi from "../assets/teacher3.jpg";
+import teacherAnindita from "../assets/teacher4.jpg";
 
 function ImpetusPage() {
   
@@ -103,7 +108,7 @@ function ImpetusPage() {
           </div>
         </section>
 
-        {/* Event Gallery (Placeholders) */}
+        {/* Event Gallery */}
         <section className="impetus-gallery">
           <div className="container">
             <h3>Event Snapshots</h3>
@@ -114,12 +119,11 @@ function ImpetusPage() {
               <div className="gallery-img-wrapper">
                 <img src={g2} alt="Event Snapshot 2" />
               </div>
-              {/* You can add extracted PDF images here later */}
-              <div className="gallery-img-wrapper placeholder">
-                <span>Snapshot 3</span>
+              <div className="gallery-img-wrapper">
+                <img src={g3} alt="Event Snapshot 3" />
               </div>
-              <div className="gallery-img-wrapper placeholder">
-                <span>Snapshot 4</span>
+              <div className="gallery-img-wrapper">
+                <img src={g4} alt="Event Snapshot 4" />
               </div>
             </div>
           </div>
@@ -131,10 +135,16 @@ function ImpetusPage() {
             <h3>Special Thanks</h3>
             <div className="faculty-grid">
               <div className="faculty-card small">
+                <div className="faculty-img-container">
+                    <img src={teacherMoutushi} alt="Prof. (Dr.) Moutushi Singh" />
+                </div>
                 <h4>Prof. (Dr.) Moutushi Singh</h4>
                 <p>Convenor, InnovAI CoE</p>
               </div>
               <div className="faculty-card small">
+                <div className="faculty-img-container">
+                    <img src={teacherAnindita} alt="Prof. Anindita Das Bhattacharjee" />
+                </div>
                 <h4>Prof. Anindita Das Bhattacharjee</h4>
                 <p>Centre In-Charge, InnovAI CoE</p>
               </div>
