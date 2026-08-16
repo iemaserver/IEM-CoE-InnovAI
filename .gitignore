@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Superdesign temporary component templates
+.superdesign/tmp/
+.playwright-mcp/
+test-results/
+innovai-footer-final.png

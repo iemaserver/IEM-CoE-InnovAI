@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "./ImpetusPage.css";
 import Header from "./Header";
 import Footer from "./Footer";

@@ -1,5 +1,5 @@
 // components/Vision.js
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ScrollReveal from "scrollreveal"; // Import ScrollReveal
 import "./Vision.css"; // Specific CSS for Vision section
 import Research1 from "./Research1";

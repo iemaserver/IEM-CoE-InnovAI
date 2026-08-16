@@ -242,7 +242,7 @@
 
 /* --- MOBILE RESPONSIVENESS --- */
 
-@media (max-width: 768px) {
+@media (max-width: 1050px) {
 
   .header .container {
 
@@ -285,5 +285,4 @@
   }
 
 }
-
 

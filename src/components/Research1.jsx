@@ -1,5 +1,4 @@
 // components/Research.js
-import React from "react";
 import "./Research.css";
 import R1 from "../assets/R1.png"; // Machine Learning
 import R2 from "../assets/R2.png"; // Remote Sensing

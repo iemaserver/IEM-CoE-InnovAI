@@ -1,4 +1,3 @@
-import React from "react";
 import "./Partnerships.css";
 
 function Partnerships1() {

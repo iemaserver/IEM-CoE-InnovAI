@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import "./Loading.css";
 import logo from "../assets/Logo.png";
 

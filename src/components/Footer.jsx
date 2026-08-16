@@ -1,4 +1,3 @@
-import React from "react";
 import FacebookIcon from "../assets/icons8-facebook.svg";
 import TwitterIcon from "../assets/icons8-twitter.svg";
 import InstagramIcon from "../assets/icons8-instagram.svg";
@@ -13,7 +12,7 @@ function Footer() {
         <div className="column-left">
           <ContactUs1 />
           <div className="container1">
-            <p>&copy; 2024 All rights reserved | Website Designed by <a href="https://www.linkedin.com/in/sumitkumardas-ai/" target="_blank" rel="noopener noreferrer" className="designer-link">Sumit Kumar Das</a></p>
+            <p>&copy; 2026 All rights reserved | Website Designed by <a href="https://www.linkedin.com/in/sumitkumardas-ai/" target="_blank" rel="noopener noreferrer" className="designer-link">Sumit Kumar Das</a></p>
             <ul className="social-links">
               <li>
                 <a href="#" target="_blank" rel="noopener noreferrer">

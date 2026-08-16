@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Logo1 from "../assets/logo1.png";
 import MenuToggle from "./MenuToggle";
 import "./Header.css";

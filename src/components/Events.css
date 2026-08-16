@@ -13,7 +13,36 @@
   color: var(--text-primary);
 }
 
-.events > p {
+.events-heading {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 30px;
+  text-align: center;
+}
+
+.events-heading > div > span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.events-view-all {
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+  color: var(--primary);
+  font-size: 0.84rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.events .container > p {
   max-width: 700px;
   margin: 0 auto 50px;
   font-size: 1.1rem;
@@ -27,6 +56,11 @@
   flex-wrap: wrap;
 }
 
+.events-cards--featured {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .events .card {
   background-color: var(--bg-card);
   border-radius: var(--border-radius);
@@ -38,6 +72,59 @@
   min-height: 320px;
   display: flex;
   flex-direction: column;
+}
+
+.events .events-feature-card {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-align: left;
+  color: var(--text-primary);
+}
+
+.events-feature-card .card-image {
+  width: 100%;
+  height: 210px;
+  margin: 0;
+  border-radius: 0;
+  object-fit: cover;
+  opacity: 0.72;
+}
+
+.events-feature-card:first-child .card-image {
+  object-position: center 24%;
+}
+
+.events-feature-card__body {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.events-feature-card__body > span {
+  color: var(--primary);
+  font-size: 0.65rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.events .events-feature-card h3 {
+  margin: 12px 0 10px;
+}
+
+.events .events-feature-card p {
+  flex: 1;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.events-feature-card__body b {
+  margin-top: 20px;
+  color: var(--primary);
+  font-size: 0.78rem;
 }
 
 .card-image {
@@ -73,5 +160,8 @@
 }
 
 @media (max-width: 992px) {
+  .events-heading { align-items: center; flex-direction: column; }
+  .events-view-all { position: static; }
+  .events-cards--featured { grid-template-columns: 1fr; }
   .events-cards { justify-content: center; }
 }

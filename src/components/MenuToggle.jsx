@@ -1,28 +1,41 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link for SPA navigation
+/* eslint-disable react/prop-types */
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./MenuToggle.css";
 
-function MenuToggle({ toggleMenu }) { 
+function MenuToggle({ toggleMenu }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
-    setIsOpen(!isOpen);
-    if (toggleMenu) toggleMenu(); 
+    setIsOpen((current) => !current);
+    if (toggleMenu) toggleMenu();
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+    if (toggleMenu && isOpen) toggleMenu();
   };
 
   return (
     <>
-      <div className="menu-toggle" onClick={handleToggle}>
-        {isOpen ? "✕" : "☰"}
-      </div>
-      <ul className={`menu ${isOpen ? "show" : ""}`}>
-        <li><Link to="/" onClick={handleToggle}>Home</Link></li>
-        <li><Link to="/events/impetus" onClick={handleToggle} className="highlight-link">IMPETUS 2026</Link></li>
-        <li><a href="/#vision" onClick={handleToggle}>Vision</a></li>
-        <li><a href="/#research" onClick={handleToggle}>Research</a></li>
-        <li><a href="/#faculty" onClick={handleToggle}>Faculty</a></li>
-        <li><a href="/#gallery" onClick={handleToggle}>Gallery</a></li>
-        <li><a href="/#contact-us" onClick={handleToggle}>Contact</a></li>
+      <button
+        type="button"
+        className="menu-toggle"
+        onClick={handleToggle}
+        aria-expanded={isOpen}
+        aria-controls="primary-menu"
+        aria-label={isOpen ? "Close navigation" : "Open navigation"}
+      >
+        <span aria-hidden="true">{isOpen ? "✕" : "☰"}</span>
+      </button>
+      <ul className={`menu ${isOpen ? "show" : ""}`} id="primary-menu">
+        <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+        <li><Link to="/events" onClick={closeMenu}>Events</Link></li>
+        <li><Link to="/impact" onClick={closeMenu}>Impact &amp; Reports</Link></li>
+        <li><a href="/#research" onClick={closeMenu}>Research</a></li>
+        <li><a href="/#faculty" onClick={closeMenu}>Faculty</a></li>
+        <li><a href="/#gallery" onClick={closeMenu}>Gallery</a></li>
+        <li><a href="/#contact-us" onClick={closeMenu}>Contact</a></li>
       </ul>
     </>
   );
