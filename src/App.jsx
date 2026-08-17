@@ -8,6 +8,7 @@ import Gallery from "./components/Gallery";
 import Partnerships1 from "./components/Partnerships1";
 import Footer from "./components/Footer";
 import Loading from "./components/Loading";
+import Tribute from "./components/Tribute";
 import CustomCursor from "./components/CustomCursor";
 import ImpetusPage from "./components/ImpetusPage"; // Import the new page
 import ImpactReportsPage from "./components/ImpactReportsPage";
@@ -17,12 +18,15 @@ import "./App.css";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
+  // The tribute follows the boot sequence on a fresh load of the site, and is
+  // skipped on client-side navigation between routes.
+  const [tributeShown, setTributeShown] = useState(false);
 
   useEffect(() => {
     // Keep a slight delay for the "Boot Sequence" effect to finish
     const timer = setTimeout(() => {
       setIsLoaded(true);
-    }, 2500); 
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -31,6 +35,8 @@ function App() {
     <div className="app">
       {!isLoaded ? (
         <Loading />
+      ) : !tributeShown ? (
+        <Tribute onDone={() => setTributeShown(true)} />
       ) : (
         <>
           <CustomCursor />

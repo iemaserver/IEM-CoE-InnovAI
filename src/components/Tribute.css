@@ -1,0 +1,225 @@
+/* ---------------------------------------------------------------------------
+   Memorial tribute screen.
+
+   The rest of the site runs on cold neon — cyan, electric purple, mono type,
+   rings that spin forever. None of that belongs on a memorial, so this screen
+   keeps only the dark ground for continuity and changes every other variable:
+   warm lamp light instead of neon, brass drawn from the IEM laurel instead of
+   cyan, a serif instead of Inter, and stillness instead of motion. The one
+   piece of movement is a ring that draws itself around the portrait exactly
+   once and stops.
+--------------------------------------------------------------------------- */
+
+.tribute {
+  --ground: #0a0c14;
+  --ground-lift: #161b30;
+  --brass: #c9a45c;
+  --ivory: #f2ede3;
+  --warm-dim: #9a9382;
+
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background:
+    radial-gradient(circle at 50% 38%, var(--ground-lift) 0%, var(--ground) 58%, #05060b 100%);
+  animation: tributeGroundIn 700ms ease-out both;
+  /* The serif is deliberately a local stack: this screen is the first thing
+     painted, and it must not wait on a webfont to render the name. */
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
+}
+
+/* Declared after .tribute so its animation wins the cascade — a fill-mode
+   animation on .tribute would otherwise pin opacity at 1 and swallow a
+   transition-based fade out. */
+.tribute--closing {
+  animation: tributeGroundOut 700ms ease forwards;
+}
+
+.tribute__inner {
+  width: 100%;
+  max-width: 620px;
+  text-align: center;
+}
+
+/* --- Portrait ------------------------------------------------------------ */
+
+.tribute__portrait {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 40px;
+  animation: tributeRise 1100ms cubic-bezier(0.22, 0.61, 0.36, 1) 300ms both;
+}
+
+.tribute__portrait img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  /* The source is a studio portrait on near-white paper. Left alone it burns a
+     hard bright disc into the dark ground, so pull the whites down a little. */
+  filter: saturate(0.94) brightness(0.97);
+  /* A soft warm halo, as if lit by a lamp rather than a screen. */
+  box-shadow:
+    0 0 0 1px rgba(201, 164, 92, 0.22),
+    0 24px 60px rgba(0, 0, 0, 0.6),
+    0 0 90px rgba(201, 164, 92, 0.12);
+}
+
+/* Vignette that settles the portrait into the ground instead of letting it sit
+   on top as a cut-out. */
+.tribute__portrait::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 42%,
+    rgba(10, 12, 20, 0) 48%,
+    rgba(10, 12, 20, 0.28) 78%,
+    rgba(10, 12, 20, 0.62) 100%
+  );
+}
+
+.tribute__ring {
+  position: absolute;
+  inset: -13px;
+  overflow: visible;
+  /* Start the stroke at 12 o'clock and travel clockwise. */
+  transform: rotate(-90deg);
+}
+
+.tribute__ring circle {
+  fill: none;
+  stroke: var(--brass);
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  /* 2πr for r=97 */
+  stroke-dasharray: 609.5;
+  stroke-dashoffset: 609.5;
+  animation: tributeRingDraw 1900ms cubic-bezier(0.32, 0.72, 0.24, 1) 420ms both;
+}
+
+/* --- Type --------------------------------------------------------------- */
+
+.tribute__eyebrow {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--warm-dim);
+  margin: 0 0 22px;
+  animation: tributeFade 900ms ease-out 1200ms both;
+}
+
+.tribute__name {
+  font-size: clamp(1.75rem, 5.2vw, 2.65rem);
+  font-weight: 400;
+  line-height: 1.24;
+  letter-spacing: 0.005em;
+  color: var(--ivory);
+  margin: 0 0 14px;
+  animation: tributeRise 1000ms cubic-bezier(0.22, 0.61, 0.36, 1) 1500ms both;
+}
+
+.tribute__role {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  letter-spacing: 0.11em;
+  color: var(--brass);
+  margin: 0;
+  animation: tributeFade 900ms ease-out 1900ms both;
+}
+
+.tribute__lifespan {
+  font-size: 0.95rem;
+  color: var(--warm-dim);
+  letter-spacing: 0.08em;
+  margin: 12px 0 0;
+  animation: tributeFade 900ms ease-out 2050ms both;
+}
+
+.tribute__line {
+  font-size: clamp(1rem, 2.7vw, 1.2rem);
+  font-style: italic;
+  line-height: 1.62;
+  color: rgba(242, 237, 227, 0.76);
+  /* Wide enough that the line does not orphan its last word, and balanced so
+     the two halves carry roughly equal weight. */
+  max-width: 40ch;
+  text-wrap: balance;
+  margin: 44px auto 0;
+  animation: tributeRise 1000ms cubic-bezier(0.22, 0.61, 0.36, 1) 2300ms both;
+}
+
+/* --- Motion ------------------------------------------------------------- */
+
+@keyframes tributeGroundIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes tributeGroundOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes tributeRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tributeFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes tributeRingDraw {
+  from { stroke-dashoffset: 609.5; }
+  to { stroke-dashoffset: 0; }
+}
+
+@media (max-width: 520px) {
+  .tribute__portrait {
+    width: 158px;
+    height: 158px;
+    margin-bottom: 32px;
+  }
+
+  .tribute__eyebrow {
+    letter-spacing: 0.26em;
+  }
+
+  .tribute__line {
+    margin-top: 34px;
+  }
+}
+
+/* Reduced motion keeps the fades — they carry the pacing of the tribute — and
+   drops only the travelling parts: the rise on each line and the drawn ring.
+   .tribute itself is left alone so the closing fade still runs. */
+@media (prefers-reduced-motion: reduce) {
+  .tribute__portrait {
+    animation: tributeFade 900ms ease-out 300ms both;
+  }
+
+  .tribute__name {
+    animation: tributeFade 900ms ease-out 1500ms both;
+  }
+
+  .tribute__line {
+    animation: tributeFade 900ms ease-out 2300ms both;
+  }
+
+  .tribute__ring circle {
+    animation: tributeFade 900ms ease-out 420ms both;
+    stroke-dashoffset: 0;
+  }
+}
