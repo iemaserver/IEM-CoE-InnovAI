@@ -19,6 +19,7 @@ import {
   revenueData,
   strategicImpactData,
 } from "../data/impactData";
+import { SHOW_EVIDENCE_LINKS, publicationSummary, publications } from "../data/publicationsData";
 import "./ImpactReportsPage.css";
 
 const gdgReportUrl = "/reports/gdg-on-campus-iem-events-2025.pdf";
@@ -161,6 +162,62 @@ function ImpactReportsPage() {
                 {researchDomains.map((domain, index) => <li key={domain}><span>0{index + 1}</span>{domain}</li>)}
               </ul>
             </aside>
+          </div>
+        </section>
+
+        <section className="impact-section" id="publications">
+          <div className="container">
+            <div className="impact-section-heading">
+              <div><span className="impact-eyebrow">Research record</span><h2>Publications</h2></div>
+              <p>
+                {publicationSummary.total} records itemised from the two CoE progress reports, grouped by
+                faculty. Venue, indexing and status are reproduced as recorded in those documents.
+              </p>
+            </div>
+
+            <div className="impact-pub-summary">
+              {Object.entries(publicationSummary.byIndex).map(([label, count]) => (
+                <span key={label}><strong>{count}</strong>{label}</span>
+              ))}
+              {Object.entries(publicationSummary.byCategory).map(([label, count]) => (
+                <span key={label}><strong>{count}</strong>{label}</span>
+              ))}
+            </div>
+
+            {publicationSummary.faculty.map((name) => {
+              const entries = publications.filter((item) => item.faculty === name);
+              return (
+                <div className="impact-pub-group" key={name}>
+                  <h3>{name}<small>{entries.length} records</small></h3>
+                  <ul className="impact-pub-list">
+                    {entries.map((entry) => (
+                      <li key={entry.title}>
+                        <p className="impact-pub-list__title">{entry.title}</p>
+                        <p className="impact-pub-list__authors">{entry.authors}</p>
+                        <p className="impact-pub-list__venue">{entry.venue}</p>
+                        <div className="impact-pub-list__meta">
+                          <span>{entry.category}</span>
+                          <span className="impact-pub-list__index">{entry.index}</span>
+                          <span>{entry.year}</span>
+                          <span className={`impact-pub-list__status impact-pub-list__status--${entry.status.split(" ")[0].toLowerCase()}`}>{entry.status}</span>
+                          {entry.doi && <a href={entry.doi} target="_blank" rel="noreferrer">DOI ↗</a>}
+                          {SHOW_EVIDENCE_LINKS && entry.evidenceUrl && (
+                            <a href={entry.evidenceUrl} target="_blank" rel="noreferrer">Supporting document ↗</a>
+                          )}
+                        </div>
+                        {entry.highlight && <p className="impact-pub-list__highlight">{entry.highlight}</p>}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+
+            <p className="impact-source-note">
+              The impact snapshot reports 55 publications across 2023–2026. The {publicationSummary.total} records
+              above are the ones individually cited in the supplied reports; the remainder are counted in the
+              snapshot but not itemised in those documents.
+            </p>
           </div>
         </section>
 

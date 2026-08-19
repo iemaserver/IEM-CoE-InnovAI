@@ -2,7 +2,13 @@
 import { useEffect, useRef } from "react";
 import "./MediaModal.css";
 
-function MediaModal({ isOpen, onClose, title, type, src }) {
+const VIEWER_LABEL = {
+  pdf: "Document viewer",
+  video: "Video player",
+  image: "Image viewer",
+};
+
+function MediaModal({ isOpen, onClose, title, type, src, poster }) {
   const closeButtonRef = useRef(null);
 
   useEffect(() => {
@@ -29,15 +35,15 @@ function MediaModal({ isOpen, onClose, title, type, src }) {
     <div className="media-modal" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
       <section className="media-modal__dialog" role="dialog" aria-modal="true" aria-label={title}>
         <header>
-          <div><span>{type === "pdf" ? "Document viewer" : "Image viewer"}</span><h2>{title}</h2></div>
+          <div><span>{VIEWER_LABEL[type] || VIEWER_LABEL.image}</span><h2>{title}</h2></div>
           <button ref={closeButtonRef} type="button" onClick={onClose} aria-label={`Close ${title}`}>Close <span aria-hidden="true">×</span></button>
         </header>
         <div className={`media-modal__content media-modal__content--${type}`}>
-          {type === "pdf" ? (
-            <iframe src={`${src}#view=FitH&toolbar=1`} title={title} />
-          ) : (
-            <img src={src} alt={title} />
+          {type === "pdf" && <iframe src={`${src}#view=FitH&toolbar=1`} title={title} />}
+          {type === "video" && (
+            <video src={src} poster={poster} controls autoPlay playsInline preload="metadata" />
           )}
+          {type !== "pdf" && type !== "video" && <img src={src} alt={title} />}
         </div>
       </section>
     </div>

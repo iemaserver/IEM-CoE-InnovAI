@@ -111,3 +111,19 @@
   .media-modal,
   .media-modal__dialog { animation: none; }
 }
+
+/* Portrait phone clips: cap the height so the player never outgrows the
+   viewport, and let the black bars fall outside the video box itself. */
+.media-modal__content--video {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-modal__content--video video {
+  max-width: 100%;
+  max-height: min(72vh, 720px);
+  width: auto;
+  border-radius: 10px;
+  background: #000;
+}

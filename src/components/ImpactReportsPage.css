@@ -343,3 +343,161 @@
   .impact-bar-chart__track span { animation: none; }
   .impact-page *, .impact-page *::before, .impact-page *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
 }
+
+/* ---------------------------------------------------------------------------
+   Publications record. Deliberately a plain, dense reading list rather than
+   cards: a bibliography is scanned, not browsed, and every entry carries the
+   same weight.
+--------------------------------------------------------------------------- */
+.impact-pub-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 44px;
+}
+
+.impact-pub-summary span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+}
+
+.impact-pub-summary strong {
+  font-size: 0.95rem;
+  color: var(--primary);
+}
+
+.impact-pub-group + .impact-pub-group {
+  margin-top: 46px;
+}
+
+.impact-pub-group h3 {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 12px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.12rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.impact-pub-group h3 small {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.impact-pub-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.impact-pub-list li {
+  padding: 22px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.impact-pub-list__title {
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.48;
+  color: var(--text-primary);
+  margin: 0 0 6px;
+}
+
+.impact-pub-list__authors {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0 0 4px;
+}
+
+.impact-pub-list__venue {
+  font-size: 0.8rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+
+.impact-pub-list__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.impact-pub-list__meta span,
+.impact-pub-list__meta a {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.impact-pub-list__index {
+  border-color: rgba(112, 0, 255, 0.38) !important;
+  color: #b98cff !important;
+}
+
+/* Published work reads differently from work still in the pipeline, so the
+   status badge is the one place colour is used to distinguish state. */
+.impact-pub-list__status--published {
+  border-color: rgba(0, 184, 169, 0.4) !important;
+  color: #4fd8cb !important;
+}
+
+.impact-pub-list__status--accepted {
+  border-color: rgba(245, 165, 36, 0.38) !important;
+  color: #f0b95f !important;
+}
+
+.impact-pub-list__status--communicated,
+.impact-pub-list__status--submitted {
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: var(--text-muted) !important;
+}
+
+.impact-pub-list__meta a {
+  border-color: rgba(0, 240, 255, 0.35);
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.impact-pub-list__meta a:hover {
+  border-color: var(--primary);
+}
+
+.impact-pub-list__highlight {
+  margin: 12px 0 0;
+  font-size: 0.78rem;
+  color: var(--primary);
+}
+
+@media (max-width: 620px) {
+  .impact-pub-group h3 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
